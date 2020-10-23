@@ -1,0 +1,22 @@
+<use   name="root"/>
+<use   name="rootcore"/>
+<use   name="PhysicsTools/FWLite"/>
+<use   name="PhysicsTools/Utilities"/>
+<use   name="DataFormats/FWLite"/>
+<use   name="TauAnalysis/ClassicSVfit"/> 
+<use   name="roofit"/>
+<use   name="roostats"/>
+
+<!--<use   name="roottmva"/>0-->
+
+
+<bin   name="SVFitStandAloneFSATauDM_mutau_norecoil" file="SVFitStandAloneFSATauDM_mutau_norecoil.cc">
+</bin>
+<bin   name="SVFitStandAloneFSATauDM_tautau_norecoil" file="SVFitStandAloneFSATauDM_tautau_norecoil.cc">
+</bin>
+<bin   name="SVFitStandAloneFSATauDM_etau_norecoil" file="SVFitStandAloneFSATauDM_etau_norecoil.cc">
+</bin>
+<bin   name="SVFitStandAloneFSATauDM_emu_norecoil" file="SVFitStandAloneFSATauDM_emu_norecoil.cc">
+</bin>
+
+</bin>
