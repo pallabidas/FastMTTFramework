@@ -6,7 +6,6 @@ import os, glob, subprocess
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--sample', '-s', default=None, help='Output name')
 parser.add_argument('--channel', '-c', default=None, help='Output name')
 parser.add_argument('--year', '-y', default=None, help='Output name')
 
