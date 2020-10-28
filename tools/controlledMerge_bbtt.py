@@ -3,6 +3,15 @@
 
 import ROOT
 import os, glob, subprocess
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--sample', '-s', default=None, help='Output name')
+parser.add_argument('--channel', '-c', default=None, help='Output name')
+parser.add_argument('--year', '-y', default=None, help='Output name')
+
+args = parser.parse_args()
+
 
 
 # Check if directory exists, make it if not
@@ -24,7 +33,7 @@ def mergeSample( jobId, sample, channel, ttreePath, originalDir, targetDir ) :
     ints = []
     for file_ in files :
 
-        # Merge to ~ 1000 events per file
+        # Merge to ~ 20000 events per file
         f = ROOT.TFile(file_,'r')
         t = f.Get(ttreePath)
 	print file_,t.GetEntries()
@@ -33,7 +42,7 @@ def mergeSample( jobId, sample, channel, ttreePath, originalDir, targetDir ) :
         runningSize += size
         print "running size: ",runningSize
         toMerge.append( file_ )
-        if runningSize > 15000 :
+        if runningSize > 20000 :
             runningSize = 0
             mergeList = ["hadd", "-f", targetDir+"/%s/ntuple_%i_%s.root" % (sample, rep, channel)]
             for f in toMerge :
@@ -52,25 +61,30 @@ def mergeSample( jobId, sample, channel, ttreePath, originalDir, targetDir ) :
 
 if __name__ == '__main__' :
 
-    #samples=["Out_VBFHTT","Out_VBFHWW","Out_WminusHTT","Out_GGHTT_v1","Out_WplusHTT","Out_GGHTT_v2","Out_ZHTT","Out_GGHWW","Out_GGZHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_GGZHLLTT","Out_GGZHQQTT","Out_GGZHNNTT","Out_ttHnonbb"] #Higgs 2016
+    samples2016=["Out_DY1_v1","Out_DY2_v1","Out_DY3","Out_DY4","Out_DY_v1","Out_DY_v2","Out_W1","Out_W2_v1","Out_W2_v2","Out_W3_v1","Out_W3_v2","Out_W4_v1","Out_W4_v2","Out_W4_v3","Out_W_v1","Out_W_v2","Out_ST_t_antitop","Out_ST_t_top","Out_ST_tW_antitop","Out_ST_tW_top","Out_TT","Out_VV2L2Nu_v1","Out_VV2L2Nu_v2","Out_WW1L1Nu2Q","Out_WZ1L1Nu2Q","Out_WZ1L3Nu","Out_WZ2L2Q","Out_WZ3L1Nu","Out_ZZ2L2Q","Out_ZZ4L","Out_GGHTT_v1","Out_GGHTT_v2","Out_GGHWW","Out_GGZHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_VBFHTT","Out_VBFHWW","Out_WminusHTT","Out_WplusHTT","Out_ZHTT","Out_GGZHLLTT","Out_GGZHNNTT","Out_GGZHQQTT","Out_ttHnonbb","Out_ggH_bbtt15","Out_vbf_bbtt15","Out_ggH_bbtt20","Out_vbf_bbtt20","Out_ggH_bbtt25","Out_vbf_bbtt25","Out_ggH_bbtt30","Out_vbf_bbtt30","Out_ggH_bbtt35","Out_vbf_bbtt35","Out_ggH_bbtt40","Out_vbf_bbtt40","Out_ggH_bbtt45","Out_vbf_bbtt45","Out_ggH_bbtt50","Out_vbf_bbtt50","Out_ggH_bbtt55","Out_vbf_bbtt55","Out_ggH_bbtt60","Out_vbf_bbtt60","Out_embeddedB","Out_embeddedC","Out_embeddedD","Out_embeddedE","Out_embeddedF","Out_embeddedG","Out_embeddedH","Out_DataBv1","Out_DataBv2","Out_DataC","Out_DataD","Out_DataE","Out_DataF","Out_DataG","Out_DataH"] 
 
-    #samples=["Out_DY4","Out_DY1_v1","Out_EWKZLL_v1","Out_ST_tW_top","Out_W3_v2","Out_WZ_v1","Out_DY2_v1","Out_EWKZLL_v2","Out_ST_t_antitop","Out_W4_v1","Out_WZ_v2","Out_DY3","Out_EWKZNuNu_v1","Out_ST_t_top","Out_W4_v2","Out_W_v1","Out_DY_v1","Out_EWKWminus_v1","Out_EWKZNuNu_v2","Out_W4_v3","Out_W_v2","Out_DY_v2","Out_EWKWminus_v2","Out_EWKZNuNu_v3","Out_VBFHTT","Out_VBFHWW","Out_WG_v1","Out_WminusHTT","Out_EWKWminus_v3","Out_GGHTT_v1","Out_W1","Out_WG_v2","Out_WplusHTT","Out_EWKWplus_v1","Out_GGHTT_v2","Out_W2_v1","Out_WG_v3","Out_ZHTT","Out_EWKWplus_v2","Out_GGHWW","Out_W2_v2","Out_WW_v1","Out_ZZ_v1","Out_EWKWplus_v3","Out_ST_tW_antitop","Out_W3_v1","Out_WW_v2","Out_ZZ_v2","Out_GGZHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_GGZHLLTT","Out_GGZHQQTT","Out_ZZ4L","Out_ZZ2L2Q","Out_VV2L2Nu_v1","Out_VV2L2Nu_v2","Out_WW1L1Nu2Q","Out_WZ1L3Nu","Out_WZ3L1Nu","Out_WZ1L1Nu2Q","Out_WZ2L2Q","Out_TT","Out_GGZHNNTT","Out_DataC","Out_DataH","Out_DataD","Out_DataE","Out_DataBv1","Out_DataF","Out_DataBv2","Out_DataG","Out_embeddedB","Out_embeddedC","Out_embeddedD","Out_embeddedE","Out_embeddedF","Out_embeddedG","Out_embeddedH"] # All 2016
+    samples2017=["Out_DY1","Out_DY2","Out_DY3","Out_DY4_v1","Out_DY4_v2","Out_DY_v1","Out_DY_v2","Out_W1_v1","Out_W1_v2","Out_W2_v1","Out_W2_v2","Out_W3","Out_W4","Out_W_v1","Out_W_v2","Out_W_v3","Out_ST_t_antitop_v1","Out_ST_t_antitop_v2","Out_ST_t_top","Out_ST_tW_antitop","Out_ST_tW_top_v1","Out_ST_tW_top_v2","Out_WW","Out_WZ","Out_ZZ","Out_VV2L2Nu","Out_WW1L1Nu2Q","Out_WZ1L1Nu2Q","Out_WZ1L3Nu","Out_WZ2L2Q","Out_WZ3L1Nu","Out_ZZ2L2Q","Out_ZZ4L","Out_TTTo2L2Nu","Out_TTToHadronic","Out_TTToSemiLeptonic","Out_GGHTT","Out_GGHWW","Out_GGZHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_VBFHTT","Out_VBFHWW","Out_WminusHTT","Out_WplusHTT","Out_ZHTT","Out_GGZHLLTT","Out_GGZHNNTT","Out_GGZHQQTT","Out_ttHnonbb","Out_ggH_bbtt12","Out_vbf_bbtt12","Out_ggH_bbtt20","Out_vbf_bbtt20","Out_ggH_bbtt30","Out_vbf_bbtt30","Out_ggH_bbtt40","Out_vbf_bbtt40","Out_ggH_bbtt50","Out_vbf_bbtt50","Out_ggH_bbtt60","Out_vbf_bbtt60","Out_embeddedB","Out_embeddedC","Out_embeddedD","Out_embeddedE","Out_embeddedF","Out_DataB","Out_DataC","Out_DataD","Out_DataE","Out_DataF"] 
 
-    #samples=["Out_DY2_v1","Out_DY_low","Out_W3_v1","Out_W_v1","Out_ZZ_v1","Out_DY2_v2","Out_EWKWminus","Out_W3_v2","Out_WW_v1","Out_DY3_v1","Out_EWKWplus","Out_VBFHTT","Out_W4_v1","Out_WW_v2","Out_DY3_v2","Out_EWKZLL","Out_W1_v1","Out_W4_v2","Out_WZ_v1","Out_DY1_v1","Out_DY4_v1","Out_EWKZNuNu","Out_ttHTT","Out_W2_v1","Out_WminusHTT","Out_WZ_v2","Out_DY1_v2","Out_DY_v1","Out_GGHTT","Out_TTTo2L2Nu","Out_W2_v2","Out_WplusHTT","Out_ZHTT","Out_WG","Out_GGZHNNTT","Out_GGZHQQTT","Out_GGZHLLTT","Out_GGHWW","Out_GGZHWW","Out_VBFHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_TTToSemiLeptonic_v1","Out_TTToSemiLeptonic_v2","Out_TTToHadronic_v1","Out_TTToHadronic_v2","Out_ZZ4L","Out_ZZ2L2Q","Out_VV2L2Nu","Out_WW1L1Nu2Q","Out_WZ1L3Nu","Out_WZ3L1Nu_v1","Out_WZ3L1Nu_v2","Out_WZ1L1Nu2Q","Out_WZ2L2Q","Out_ST_t_antitop","Out_ST_t_top","Out_ST_tW_antitop","Out_ST_tW_top","Out_EmbeddedA","Out_EmbeddedB","Out_EmbeddedC","Out_EmbeddedD","Out_DataA","Out_DataB","Out_DataC","Out_DataD"] # All 2018
+     samples2018=["Out_DY1_v1","Out_DY1_v2","Out_DY2_v1","Out_DY2_v2","Out_DY3_v1","Out_DY3_v2","Out_DY4_v1","Out_DY_v1","Out_GGHTT","Out_ST_t_antitop","Out_ST_t_top","Out_ST_tW_antitop","Out_ST_tW_top","Out_TTTo2L2Nu","Out_TTToHadronic_v1","Out_TTToHadronic_v2","Out_TTToSemiLeptonic_v1","Out_TTToSemiLeptonic_v2","Out_VBFHTT","Out_VV2L2Nu","Out_W1_v1","Out_W2_v1","Out_W2_v2","Out_W3_v1","Out_W3_v2","Out_W4_v1","Out_W4_v2","Out_W_v1","Out_WZ2L2Q","Out_WZ3LNu_v1","Out_WZ3LNu_v2","Out_WminusHTT","Out_WplusHTT","Out_ZHTT","Out_ZZ2L2Q","Out_ZZ4L","Out_GGZHLLTT","Out_GGZHNNTT","Out_GGZHQQTT","Out_ttHnonbb","Out_GGHWW","Out_GGZHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_VBFHWW","Out_ggH_bbtt12","Out_vbf_bbtt12","Out_ggH_bbtt20","Out_vbf_bbtt20","Out_ggH_bbtt30","Out_vbf_bbtt30","Out_ggH_bbtt40","Out_vbf_bbtt40","Out_ggH_bbtt50","Out_vbf_bbtt50","Out_ggH_bbtt60","Out_vbf_bbtt60","Out_wh_bbtt40","Out_zh_bbtt40","Out_embeddedA","Out_embeddedB","Out_embeddedC","Out_embeddedD","Out_DataA","Out_DataB","Out_DataC","Out_DataD"] #2018 EDIT
 
-    #samples =["Out_VBFHTT","Out_ttHTT","Out_WminusHTT","Out_GGHTT","Out_WplusHTT","Out_ZHTT","Out_GGZHNNTT","Out_GGZHQQTT","Out_GGZHLLTT","Out_GGHWW","Out_GGZHWW","Out_VBFHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW"]
+    samples=samples2016
+    if args.year==2017:
+       samples=samples2017
+    if args.year==2018:
+       samples=samples2018
 
-    #samples=["Out_DY1","Out_DY_v2","Out_EWKZNuNu","Out_ST_t_top","Out_W1_v1","Out_W4","Out_WplusHTT","Out_DY2","Out_DYlow","Out_GGHTT","Out_TTTo2L2Nu","Out_W1_v2","Out_WW","Out_ZHTT","Out_DY3","Out_EWKWminus","Out_ST_tW_antitop","Out_TTToHadronic","Out_W2_v1","Out_WZ","Out_ZZ","Out_DY4_v1","Out_DY4_v2","Out_EWKWplus","Out_ST_tW_top_v1","Out_ST_tW_top_v2","Out_TTToSemiLeptonic","Out_W2_v2","Out_W_v1","Out_W_v2","Out_W_v3","Out_DY_v1","Out_EWKZLL","Out_ST_t_antitop_v1","Out_ST_t_antitop_v2","Out_VBFHTT","Out_W3","Out_WminusHTT","Out_WG","Out_GGZHNNTT","Out_GGZHQQTT","Out_GGZHLLTT","Out_GGHWW","Out_GGZHWW","Out_VBFHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_ttHnonbb","Out_ZZ2L2Q","Out_VV2L2Nu","Out_WW1L1Nu2Q","Out_WZ1L3Nu","Out_WZ3L1Nu","Out_WZ1L1Nu2Q","Out_WZ2L2Q","Out_ZZ4L","Out_embeddedB","Out_embeddedC","Out_embeddedD","Out_embeddedE","Out_embeddedF","Out_DataB","Out_DataC","Out_DataD","Out_DataE","Out_DataF"] # All 2017
-
-    #samples=["Out_WplusHTT","Out_GGHTT","Out_ZHTT","Out_VBFHTT","Out_WminusHTT","Out_GGZHNNTT","Out_GGZHQQTT","Out_GGZHLLTT","Out_GGHWW","Out_GGZHWW","Out_VBFHWW","Out_WminusHWW","Out_WplusHWW","Out_ZHWW","Out_ttHnonbb"] #Higgs 2017
-
-    samples=["Out_ttHnonbb"]
-
-    originalDir = '/nfs_scratch/caillol/differentialmt2016_3aug'
-    targetDir = '/nfs_scratch/caillol/differentialmt2016_3aug_merged'
+    originalDir = '/nfs_scratch/htsoi/haabbtt_'+args.channel+args.year+'_7sep'  
+    targetDir = '/nfs_scratch/htsoi/haabbtt_'+args.channel+args.year+'_7sep_merged' 
     jobId = ''
     channel = 'xx'
-    ttreePath = 'mutau_tree'
+    ttreePath = 'etau_tree' 
+    if args.channel=="em":
+       ttreePath = 'emu_tree'
+    if args.channel=="mt":
+       ttreePath = 'mutau_tree'
+    if args.channel=="tt":
+       ttreePath = 'tautau_tree'
+
     for sample in samples :
 	print sample
         mergeSample( jobId, sample, channel, ttreePath, originalDir, targetDir )

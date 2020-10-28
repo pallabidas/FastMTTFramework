@@ -248,6 +248,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       TBranch *newBranch2UD = t->Branch("pt_sv_UESDown", &svFitPt_UESDown, "pt_sv_UESDown/F");
       TBranch *newBranch3UD = t->Branch("phi_sv_UESDown", &svFitPhi_UESDown, "phi_sv_UESDown/F");
       TBranch *newBranch4UD = t->Branch("eta_sv_UESDown", &svFitEta_UESDown, "eta_sv_UESDown/F");
+
+
       TBranch *newBranch1ResponseU = t->Branch("m_sv_ResponseUp", &svFitMass_ResponseUp, "m_sv_ResponseUp/F");
       TBranch *newBranch1ResponseD = t->Branch("m_sv_ResponseDown", &svFitMass_ResponseDown, "m_sv_ResponseDown/F");
       TBranch *newBranch1ResolutionU = t->Branch("m_sv_ResolutionUp", &svFitMass_ResolutionUp, "m_sv_ResolutionUp/F");
@@ -264,6 +266,57 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       TBranch *newBranch1JetRelativeBalD = t->Branch("m_sv_JetRelativeBalDown", &svFitMass_JetRelativeBalDown, "m_sv_JetRelativeBalDown/F");
       TBranch *newBranch1JetRelativeSampleU = t->Branch("m_sv_JetRelativeSampleUp", &svFitMass_JetRelativeSampleUp, "m_sv_JetRelativeSampleUp/F");
       TBranch *newBranch1JetRelativeSampleD = t->Branch("m_sv_JetRelativeSampleDown", &svFitMass_JetRelativeSampleDown, "m_sv_JetRelativeSampleDown/F");
+
+      TBranch *newBranchPt1ResponseU = t->Branch("pt_sv_ResponseUp", &svFitPt_ResponseUp, "pt_sv_ResponseUp/F");
+      TBranch *newBranchPt1ResponseD = t->Branch("pt_sv_ResponseDown", &svFitPt_ResponseDown, "pt_sv_ResponseDown/F");
+      TBranch *newBranchPt1ResolutionU = t->Branch("pt_sv_ResolutionUp", &svFitPt_ResolutionUp, "pt_sv_ResolutionUp/F");
+      TBranch *newBranchPt1ResolutionD = t->Branch("pt_sv_ResolutionDown", &svFitPt_ResolutionDown, "pt_sv_ResolutionDown/F");
+      TBranch *newBranchPt1JetEta0to3U = t->Branch("pt_sv_JetEta0to3Up", &svFitPt_JetEta0to3Up, "pt_sv_JetEta0to3Up/F");
+      TBranch *newBranchPt1JetEta0to3D = t->Branch("pt_sv_JetEta0to3Down", &svFitPt_JetEta0to3Down, "pt_sv_JetEta0to3Down/F");
+      TBranch *newBranchPt1JetEC2U = t->Branch("pt_sv_JetEC2Up", &svFitPt_JetEC2Up, "pt_sv_JetEC2Up/F");
+      TBranch *newBranchPt1JetEC2D = t->Branch("pt_sv_JetEC2Down", &svFitPt_JetEC2Down, "pt_sv_JetEC2Down/F");
+      TBranch *newBranchPt1JetEta3to5U = t->Branch("pt_sv_JetEta3to5Up", &svFitPt_JetEta3to5Up, "pt_sv_JetEta3to5Up/F");
+      TBranch *newBranchPt1JetEta3to5D = t->Branch("pt_sv_JetEta3to5Down", &svFitPt_JetEta3to5Down, "pt_sv_JetEta3to5Down/F");
+      TBranch *newBranchPt1JetEta0to5U = t->Branch("pt_sv_JetEta0to5Up", &svFitPt_JetEta0to5Up, "pt_sv_JetEta0to5Up/F");
+      TBranch *newBranchPt1JetEta0to5D = t->Branch("pt_sv_JetEta0to5Down", &svFitPt_JetEta0to5Down, "pt_sv_JetEta0to5Down/F");
+      TBranch *newBranchPt1JetRelativeBalU = t->Branch("pt_sv_JetRelativeBalUp", &svFitPt_JetRelativeBalUp, "pt_sv_JetRelativeBalUp/F");
+      TBranch *newBranchPt1JetRelativeBalD = t->Branch("pt_sv_JetRelativeBalDown", &svFitPt_JetRelativeBalDown, "pt_sv_JetRelativeBalDown/F");
+      TBranch *newBranchPt1JetRelativeSampleU = t->Branch("pt_sv_JetRelativeSampleUp", &svFitPt_JetRelativeSampleUp, "pt_sv_JetRelativeSampleUp/F");
+      TBranch *newBranchPt1JetRelativeSampleD = t->Branch("pt_sv_JetRelativeSampleDown", &svFitPt_JetRelativeSampleDown, "pt_sv_JetRelativeSampleDown/F");
+
+      TBranch *newBranchEta1ResponseU = t->Branch("eta_sv_ResponseUp", &svFitEta_ResponseUp, "eta_sv_ResponseUp/F");
+      TBranch *newBranchEta1ResponseD = t->Branch("eta_sv_ResponseDown", &svFitEta_ResponseDown, "eta_sv_ResponseDown/F");
+      TBranch *newBranchEta1ResolutionU = t->Branch("eta_sv_ResolutionUp", &svFitEta_ResolutionUp, "eta_sv_ResolutionUp/F");
+      TBranch *newBranchEta1ResolutionD = t->Branch("eta_sv_ResolutionDown", &svFitEta_ResolutionDown, "eta_sv_ResolutionDown/F");
+      TBranch *newBranchEta1JetEta0to3U = t->Branch("eta_sv_JetEta0to3Up", &svFitEta_JetEta0to3Up, "eta_sv_JetEta0to3Up/F");
+      TBranch *newBranchEta1JetEta0to3D = t->Branch("eta_sv_JetEta0to3Down", &svFitEta_JetEta0to3Down, "eta_sv_JetEta0to3Down/F");
+      TBranch *newBranchEta1JetEC2U = t->Branch("eta_sv_JetEC2Up", &svFitEta_JetEC2Up, "eta_sv_JetEC2Up/F");
+      TBranch *newBranchEta1JetEC2D = t->Branch("eta_sv_JetEC2Down", &svFitEta_JetEC2Down, "eta_sv_JetEC2Down/F");
+      TBranch *newBranchEta1JetEta3to5U = t->Branch("eta_sv_JetEta3to5Up", &svFitEta_JetEta3to5Up, "eta_sv_JetEta3to5Up/F");
+      TBranch *newBranchEta1JetEta3to5D = t->Branch("eta_sv_JetEta3to5Down", &svFitEta_JetEta3to5Down, "eta_sv_JetEta3to5Down/F");
+      TBranch *newBranchEta1JetEta0to5U = t->Branch("eta_sv_JetEta0to5Up", &svFitEta_JetEta0to5Up, "eta_sv_JetEta0to5Up/F");
+      TBranch *newBranchEta1JetEta0to5D = t->Branch("eta_sv_JetEta0to5Down", &svFitEta_JetEta0to5Down, "eta_sv_JetEta0to5Down/F");
+      TBranch *newBranchEta1JetRelativeBalU = t->Branch("eta_sv_JetRelativeBalUp", &svFitEta_JetRelativeBalUp, "eta_sv_JetRelativeBalUp/F");
+      TBranch *newBranchEta1JetRelativeBalD = t->Branch("eta_sv_JetRelativeBalDown", &svFitEta_JetRelativeBalDown, "eta_sv_JetRelativeBalDown/F");
+      TBranch *newBranchEta1JetRelativeSampleU = t->Branch("eta_sv_JetRelativeSampleUp", &svFitEta_JetRelativeSampleUp, "eta_sv_JetRelativeSampleUp/F");
+      TBranch *newBranchEta1JetRelativeSampleD = t->Branch("eta_sv_JetRelativeSampleDown", &svFitEta_JetRelativeSampleDown, "eta_sv_JetRelativeSampleDown/F");
+
+      TBranch *newBranchPhi1ResponseU = t->Branch("phi_sv_ResponseUp", &svFitPhi_ResponseUp, "phi_sv_ResponseUp/F");
+      TBranch *newBranchPhi1ResponseD = t->Branch("phi_sv_ResponseDown", &svFitPhi_ResponseDown, "phi_sv_ResponseDown/F");
+      TBranch *newBranchPhi1ResolutionU = t->Branch("phi_sv_ResolutionUp", &svFitPhi_ResolutionUp, "phi_sv_ResolutionUp/F");
+      TBranch *newBranchPhi1ResolutionD = t->Branch("phi_sv_ResolutionDown", &svFitPhi_ResolutionDown, "phi_sv_ResolutionDown/F");
+      TBranch *newBranchPhi1JetEta0to3U = t->Branch("phi_sv_JetEta0to3Up", &svFitPhi_JetEta0to3Up, "phi_sv_JetEta0to3Up/F");
+      TBranch *newBranchPhi1JetEta0to3D = t->Branch("phi_sv_JetEta0to3Down", &svFitPhi_JetEta0to3Down, "phi_sv_JetEta0to3Down/F");
+      TBranch *newBranchPhi1JetEC2U = t->Branch("phi_sv_JetEC2Up", &svFitPhi_JetEC2Up, "phi_sv_JetEC2Up/F");
+      TBranch *newBranchPhi1JetEC2D = t->Branch("phi_sv_JetEC2Down", &svFitPhi_JetEC2Down, "phi_sv_JetEC2Down/F");
+      TBranch *newBranchPhi1JetEta3to5U = t->Branch("phi_sv_JetEta3to5Up", &svFitPhi_JetEta3to5Up, "phi_sv_JetEta3to5Up/F");
+      TBranch *newBranchPhi1JetEta3to5D = t->Branch("phi_sv_JetEta3to5Down", &svFitPhi_JetEta3to5Down, "phi_sv_JetEta3to5Down/F");
+      TBranch *newBranchPhi1JetEta0to5U = t->Branch("phi_sv_JetEta0to5Up", &svFitPhi_JetEta0to5Up, "phi_sv_JetEta0to5Up/F");
+      TBranch *newBranchPhi1JetEta0to5D = t->Branch("phi_sv_JetEta0to5Down", &svFitPhi_JetEta0to5Down, "phi_sv_JetEta0to5Down/F");
+      TBranch *newBranchPhi1JetRelativeBalU = t->Branch("phi_sv_JetRelativeBalUp", &svFitPhi_JetRelativeBalUp, "phi_sv_JetRelativeBalUp/F");
+      TBranch *newBranchPhi1JetRelativeBalD = t->Branch("phi_sv_JetRelativeBalDown", &svFitPhi_JetRelativeBalDown, "phi_sv_JetRelativeBalDown/F");
+      TBranch *newBranchPhi1JetRelativeSampleU = t->Branch("phi_sv_JetRelativeSampleUp", &svFitPhi_JetRelativeSampleUp, "phi_sv_JetRelativeSampleUp/F");
+      TBranch *newBranchPhi1JetRelativeSampleD = t->Branch("phi_sv_JetRelativeSampleDown", &svFitPhi_JetRelativeSampleDown, "phi_sv_JetRelativeSampleDown/F");
 
       int evt;
       int run, lumi;
@@ -826,6 +879,7 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          newBranch2UD->Fill();
          newBranch3UD->Fill();
          newBranch4UD->Fill();
+
          newBranch1ResponseU->Fill();
          newBranch1ResponseD->Fill();
          newBranch1ResolutionU->Fill();
@@ -842,6 +896,57 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          newBranch1JetRelativeBalD->Fill();
          newBranch1JetRelativeSampleU->Fill();
          newBranch1JetRelativeSampleD->Fill();
+
+         newBranchPt1ResponseU->Fill();
+         newBranchPt1ResponseD->Fill();
+         newBranchPt1ResolutionU->Fill();
+         newBranchPt1ResolutionD->Fill();
+         newBranchPt1JetEta0to3U->Fill();
+         newBranchPt1JetEta0to3D->Fill();
+         newBranchPt1JetEC2U->Fill();
+         newBranchPt1JetEC2D->Fill();
+         newBranchPt1JetEta3to5U->Fill();
+         newBranchPt1JetEta3to5D->Fill();
+         newBranchPt1JetEta0to5U->Fill();
+         newBranchPt1JetEta0to5D->Fill();
+         newBranchPt1JetRelativeBalU->Fill();
+         newBranchPt1JetRelativeBalD->Fill();
+         newBranchPt1JetRelativeSampleU->Fill();
+         newBranchPt1JetRelativeSampleD->Fill();
+
+         newBranchEta1ResponseU->Fill();
+         newBranchEta1ResponseD->Fill();
+         newBranchEta1ResolutionU->Fill();
+         newBranchEta1ResolutionD->Fill();
+         newBranchEta1JetEta0to3U->Fill();
+         newBranchEta1JetEta0to3D->Fill();
+         newBranchEta1JetEC2U->Fill();
+         newBranchEta1JetEC2D->Fill();
+         newBranchEta1JetEta3to5U->Fill();
+         newBranchEta1JetEta3to5D->Fill();
+         newBranchEta1JetEta0to5U->Fill();
+         newBranchEta1JetEta0to5D->Fill();
+         newBranchEta1JetRelativeBalU->Fill();
+         newBranchEta1JetRelativeBalD->Fill();
+         newBranchEta1JetRelativeSampleU->Fill();
+         newBranchEta1JetRelativeSampleD->Fill();
+
+         newBranchPhi1ResponseU->Fill();
+         newBranchPhi1ResponseD->Fill();
+         newBranchPhi1ResolutionU->Fill();
+         newBranchPhi1ResolutionD->Fill();
+         newBranchPhi1JetEta0to3U->Fill();
+         newBranchPhi1JetEta0to3D->Fill();
+         newBranchPhi1JetEC2U->Fill();
+         newBranchPhi1JetEC2D->Fill();
+         newBranchPhi1JetEta3to5U->Fill();
+         newBranchPhi1JetEta3to5D->Fill();
+         newBranchPhi1JetEta0to5U->Fill();
+         newBranchPhi1JetEta0to5D->Fill();
+         newBranchPhi1JetRelativeBalU->Fill();
+         newBranchPhi1JetRelativeBalD->Fill();
+         newBranchPhi1JetRelativeSampleU->Fill();
+         newBranchPhi1JetRelativeSampleD->Fill();
     }
       dir->cd();
       t->Write("",TObject::kOverwrite);
