@@ -12,3 +12,30 @@ cd $CMSSW_BASE/src
 scram b -j 4
 ```
 
+Merge skimmed files to have 20k events per file: 
+
+```
+cd FastMTTFramework/tools
+mkdir /nfs_scratch/user/caillol/haabbtt_et2016_7sep_merged #edit name to match your area and samples
+# edit controlledMerge_bbtt.py to change the location of your skimmed files (originalDir and targetDir)
+python controlledMerge_bbtt --channel=et --year=2016 
+```
+
+Copy the merged files to hdfs to be read by Condor:
+
+```
+cp -r /nfs_scratch/user/caillol/haabbtt_et2016_7sep_merged /hdfs/store/user/caillol/.
+```
+
+Setup proxy:
+
+```
+ voms-proxy-init --voms=cms --valid=48:00
+```
+
+Submit jobs to condor:
+
+```
+cd FastMTTFramework/test
+```
+

@@ -31,6 +31,7 @@ def parse_command_line(argv):
     parser.add_argument('-res','--doRES',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
     parser.add_argument('-jes','--doJES',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
     parser.add_argument('-year','--year',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
+    parser.add_argument('-channel','--channel',nargs='?',type=str,const='')
     args = parser.parse_args(argv)
 
     return args
@@ -45,8 +46,8 @@ def main(argv=None):
     print "svfit standalone submit"
     args = parse_command_line(argv)
     jobName = args.jobName
-    channel = "ETau"
-    period = 17
+    channel = args.channel
+    period = args.year
     dryrun = args.dryrun
     sampledir = args.sampledir
     sample_name = os.path.basename(sampledir)
@@ -81,7 +82,14 @@ def main(argv=None):
 
     bash_name = '%s/%s_%i_%s.sh' % (dag_dir+'inputs', channel, period, sample_name)
     bashScript = "#!/bin/bash\n value=$(<$INPUT)\n echo \"$value\"\n"
-    bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_ZH_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
+    if args.channel=="em":
+       bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_emu_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
+    if args.channel=="et":
+       bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_etau_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
+    if args.channel=="mt":
+       bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_mutau_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
+    if args.channel=="tt":
+       bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_tautau_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
     if args.doES : doES = "doES="+args.doES
     else : doES = ''
     bashScript += ' %s' % (doES)
