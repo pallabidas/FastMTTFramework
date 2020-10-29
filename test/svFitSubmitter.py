@@ -31,7 +31,7 @@ def parse_command_line(argv):
     parser.add_argument('-res','--doRES',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
     parser.add_argument('-jes','--doJES',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
     parser.add_argument('-year','--year',nargs='?',type=str,const='',help='Doing TES / EES shifts?')
-    parser.add_argument('-channel','--channel',nargs='?',type=str,const='')
+    parser.add_argument('-channel','--channel',type=str)
     args = parser.parse_args(argv)
 
     return args
@@ -80,7 +80,7 @@ def main(argv=None):
         for f in filelist:
             file.write('%s\n' % f.replace('/hdfs','',1))
 
-    bash_name = '%s/%s_%i_%s.sh' % (dag_dir+'inputs', channel, period, sample_name)
+    bash_name = '%s/%s_%s_%s.sh' % (dag_dir+'inputs', channel, period, sample_name)
     bashScript = "#!/bin/bash\n value=$(<$INPUT)\n echo \"$value\"\n"
     if args.channel=="em":
        bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_emu_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
