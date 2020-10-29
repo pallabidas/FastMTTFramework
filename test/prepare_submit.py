@@ -246,11 +246,11 @@ if __name__ == "__main__":
     if args.year==2018:
       name=name2018
 
-    datadir="/hdfs/store/user/htsoi/haabbtt_"+args.channel+args.year+"_7sep/"
+    datadir="/hdfs/store/user/caillol/haabbtt_"+args.channel+args.year+"_7sep/"
     all_File = open("do_submit_"+args.channel+args.year+".sh" , 'w')
     line=""
     for j in range(0,len(name)/5):
-       line=line+"python svFitSubmitter.py --channel="+args.channel+" -sd /hdfs/store/user/htsoi/haabbtt_"+args.channel+args.year+"_7sep_merged/Out_"+name[j*5]+" -es="+name[j*5+1]+" -ues="+name[j*5+2]+" -res="+name[j*5+3]+" -jes="+name[j*5+4]+" -year="+args.year+" --jobName haabbtt_"+args.channel+args.year+"_svfitted_7sep" + "\n"
+       line=line+"python svFitSubmitter.py --channel="+args.channel+" -sd /hdfs/store/user/caillol/haabbtt_"+args.channel+args.year+"_7sep_merged/Out_"+name[j*5]+" -es="+name[j*5+1]+" -ues="+name[j*5+2]+" -res="+name[j*5+3]+" -jes="+name[j*5+4]+" -year="+args.year+" --jobName haabbtt_"+args.channel+args.year+"_svfitted_7sep" + "\n"
     all_File.write(line)
     all_File.close()
 
