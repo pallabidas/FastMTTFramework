@@ -126,9 +126,9 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
    TFile ffes2016("TauFES_eta-dm_DeepTau2017v2p1VSe_2016Legacy.root");
    TFile ffes2017("TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
    TFile ffes2018("TauFES_eta-dm_DeepTau2017v2p1VSe_2018ReReco.root");
-   TGraph* gfes_2016=(TGraph*) ffes2016.Get("tes");
-   TGraph* gfes_2017=(TGraph*) ffes2017.Get("tes");
-   TGraph* gfes_2018=(TGraph*) ffes2018.Get("tes");
+   TGraph* gfes_2016=(TGraph*) ffes2016.Get("fes");
+   TGraph* gfes_2017=(TGraph*) ffes2017.Get("fes");
+   TGraph* gfes_2018=(TGraph*) ffes2018.Get("fes");
 
       TTree *t = (TTree*)obj;
       float svFitMass = -10;
@@ -1037,14 +1037,17 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
                         int bin_low = hist_lowpt_2016->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2016->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_UP_scale=1.0+hist_highpt_2016->GetBinError(bin_high);
-                        else if (pt2<34) ES_UP_scale=1.0+hist_lowpt_2016->GetBinError(bin_low);
-                        else ES_UP_scale=1.0+(hist_lowpt_2016->GetBinError(bin_low)+(hist_highpt_2016->GetBinError(bin_high)-hist_lowpt_2016->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2016->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2016->GetBinError(bin_low);
+                        float error_high = hist_highpt_2016->GetBinError(bin_high);
+                        if (pt2>=170) ES_UP_scale=1.0+error_high/cent;
+                        else if (pt2<34) ES_UP_scale=1.0+error_low/cent;
+                        else ES_UP_scale=1.0+(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent;
                     }
-		    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(3); // for e->tauh fakes in MC
+		    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(0)/gfes_2016->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(1)/gfes_2016->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(2)/gfes_2016->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2016->GetErrorYhigh(3)/gfes_2016->GetY()[3]; // for e->tauh fakes in MC
                     else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_UP_scale=1.01; // for mu->tauh fakes in MC
 		}
 		else if (year==2017){
@@ -1055,14 +1058,17 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
                         int bin_low = hist_lowpt_2017->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2017->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_UP_scale=1.0+hist_highpt_2017->GetBinError(bin_high);
-                        else if (pt2<34) ES_UP_scale=1.0+hist_lowpt_2017->GetBinError(bin_low);
-                        else ES_UP_scale=1.0+(hist_lowpt_2017->GetBinError(bin_low)+(hist_highpt_2017->GetBinError(bin_high)-hist_lowpt_2017->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2017->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2017->GetBinError(bin_low);
+                        float error_high = hist_highpt_2017->GetBinError(bin_high);
+                        if (pt2>=170) ES_UP_scale=1.0+error_high/cent;
+                        else if (pt2<34) ES_UP_scale=1.0+error_low/cent;
+                        else ES_UP_scale=1.0+(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent; 
                     }
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(3); // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(0)/gfes_2017->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(1)/gfes_2017->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(2)/gfes_2017->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2017->GetErrorYhigh(3)/gfes_2017->GetY()[3]; // for e->tauh fakes in MC
                     else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_UP_scale=1.01; // for mu->tauh fakes in MC
                 }
 		else if (year==2018){
@@ -1073,14 +1079,17 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
                         int bin_low = hist_lowpt_2018->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2018->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_UP_scale=1.0+hist_highpt_2018->GetBinError(bin_high);
-                        else if (pt2<34) ES_UP_scale=1.0+hist_lowpt_2018->GetBinError(bin_low);
-                        else ES_UP_scale=1.0+(hist_lowpt_2018->GetBinError(bin_low)+(hist_highpt_2018->GetBinError(bin_high)-hist_lowpt_2018->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2018->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2018->GetBinError(bin_low);
+                        float error_high = hist_highpt_2018->GetBinError(bin_high);
+                        if (pt2>=170) ES_UP_scale=1.0+error_high/cent;
+                        else if (pt2<34) ES_UP_scale=1.0+error_low/cent;
+                        else ES_UP_scale=1.0+(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent;
                     }
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(3); // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(0)/gfes_2018->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(1)/gfes_2018->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(2)/gfes_2018->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_UP_scale=1.0+gfes_2018->GetErrorYhigh(3)/gfes_2018->GetY()[3]; // for e->tauh fakes in MC
                     else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_UP_scale=1.01; // for mu->tauh fakes in MC
                 }
                 double pt2_UP;
@@ -1106,17 +1115,20 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     else if (doES==2 && gen_match_2==5 && decayMode2==10) ES_DOWN_scale=0.9949; // for real taus in embedded
                     else if (doES==2 && gen_match_2==5 && decayMode2==11) ES_DOWN_scale=0.9949; // for real taus in embedded
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
-          		int bin_low = hist_lowpt_2016->GetXaxis()->FindBin(decayMode2);
+                        int bin_low = hist_lowpt_2016->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2016->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_DOWN_scale=1.0-hist_highpt_2016->GetBinError(bin_high);
-			else if (pt2<34) ES_DOWN_scale=1.0-hist_lowpt_2016->GetBinError(bin_low);
-			else ES_DOWN_scale=1.0-(hist_lowpt_2016->GetBinError(bin_low)+(hist_highpt_2016->GetBinError(bin_high)-hist_lowpt_2016->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2016->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2016->GetBinError(bin_low);
+                        float error_high = hist_highpt_2016->GetBinError(bin_high);
+                        if (pt2>=170) ES_DOWN_scale=1.0-error_high/cent;
+                        else if (pt2<34) ES_DOWN_scale=1.0-error_low/cent;
+                        else ES_DOWN_scale=1.0-(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent;
 		    }
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2016->GetErrorYlow(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2016->GetErrorYlow(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2016->GetErrorYlow(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2016->GetErrorYlow(3); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=1.01; // for mu->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2016->GetErrorYlow(0)/gfes_2016->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2016->GetErrorYlow(1)/gfes_2016->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2016->GetErrorYlow(2)/gfes_2016->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2016->GetErrorYlow(3)/gfes_2016->GetY()[3]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=0.99; // for mu->tauh fakes in MC
                 }
                 else if (year==2017){
                     if (doES==2 && gen_match_2==5 && decayMode2==0) ES_DOWN_scale=0.9958; // for real taus in embedded
@@ -1126,15 +1138,18 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
                         int bin_low = hist_lowpt_2017->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2017->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_DOWN_scale=1.0-hist_highpt_2017->GetBinError(bin_high);
-                        else if (pt2<34) ES_DOWN_scale=1.0-hist_lowpt_2017->GetBinError(bin_low);
-                        else ES_DOWN_scale=1.0-(hist_lowpt_2017->GetBinError(bin_low)+(hist_highpt_2017->GetBinError(bin_high)-hist_lowpt_2017->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2017->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2017->GetBinError(bin_low);
+                        float error_high = hist_highpt_2017->GetBinError(bin_high);
+                        if (pt2>=170) ES_DOWN_scale=1.0-error_high/cent;
+                        else if (pt2<34) ES_DOWN_scale=1.0-error_low/cent;
+                        else ES_DOWN_scale=1.0-(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent;
                     }
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2017->GetErrorYlow(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2017->GetErrorYlow(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2017->GetErrorYlow(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2017->GetErrorYlow(3); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=1.01; // for mu->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2017->GetErrorYlow(0)/gfes_2017->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2017->GetErrorYlow(1)/gfes_2017->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2017->GetErrorYlow(2)/gfes_2017->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2017->GetErrorYlow(3)/gfes_2017->GetY()[3]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=0.99; // for mu->tauh fakes in MC
                 }
                 else if (year==2018){
                     if (doES==2 && gen_match_2==5 && decayMode2==0) ES_DOWN_scale=0.9961; // for real taus in embedded
@@ -1144,15 +1159,18 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     if (doES==1 && gen_match_2==5){ // for real taus in MC
                         int bin_low = hist_lowpt_2018->GetXaxis()->FindBin(decayMode2);
                         int bin_high = hist_highpt_2018->GetXaxis()->FindBin(decayMode2);
-                        if (pt2>=170) ES_DOWN_scale=1.0-hist_highpt_2018->GetBinError(bin_high);
-                        else if (pt2<34) ES_DOWN_scale=1.0-hist_lowpt_2018->GetBinError(bin_low);
-                        else ES_DOWN_scale=1.0-(hist_lowpt_2018->GetBinError(bin_low)+(hist_highpt_2018->GetBinError(bin_high)-hist_lowpt_2018->GetBinError(bin_low))*((pt2-34.)/(170.-34.)));
+                        float cent = hist_lowpt_2018->GetBinContent(bin_low);
+                        float error_low = hist_lowpt_2018->GetBinError(bin_low);
+                        float error_high = hist_highpt_2018->GetBinError(bin_high);
+                        if (pt2>=170) ES_DOWN_scale=1.0-error_high/cent;
+                        else if (pt2<34) ES_DOWN_scale=1.0-error_low/cent;
+                        else ES_DOWN_scale=1.0-(error_low+(error_high-error_low)*(pt2-34.)/(170.-34.))/cent;
                     }
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2018->GetErrorYlow(0); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0+gfes_2018->GetErrorYlow(1); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2018->GetErrorYlow(2); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0+gfes_2018->GetErrorYlow(3); // for e->tauh fakes in MC
-                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=1.01; // for mu->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2018->GetErrorYlow(0)/gfes_2018->GetY()[0]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)<1.5) ES_DOWN_scale=1.0-gfes_2018->GetErrorYlow(1)/gfes_2018->GetY()[1]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==0 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2018->GetErrorYlow(2)/gfes_2018->GetY()[2]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==1 or gen_match_2==3) && decayMode2==1 && fabs(eta2)>1.5) ES_DOWN_scale=1.0-gfes_2018->GetErrorYlow(3)/gfes_2018->GetY()[3]; // for e->tauh fakes in MC
+                    else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_DOWN_scale=0.99; // for mu->tauh fakes in MC
                 }
                 double pt2_DOWN;
                 double mass2_DOWN = m2;
