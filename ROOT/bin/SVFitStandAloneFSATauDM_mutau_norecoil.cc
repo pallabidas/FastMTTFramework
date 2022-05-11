@@ -408,8 +408,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       TBranch *newBranchPhi1JERU = t->Branch("phi_sv_JERUp", &svFitPhi_JERUp, "phi_sv_JERUp/F");
       TBranch *newBranchPhi1JERD = t->Branch("phi_sv_JERDown", &svFitPhi_JERDown, "phi_sv_JERDown/F");
 
-      int evt;
-      int run, lumi;
+      unsigned int evt;
+      unsigned int run, lumi;
       float pt1;
       float eta1;
       float phi1;
@@ -417,8 +417,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       float eta2;
       float phi2;
       float m2;
-      int gen_match_2;
-      float decayMode2;
+      unsigned int gen_match_2;
+      int decayMode2;
       float pfCovMatrix00;
       float pfCovMatrix10;
       float pfCovMatrix01;
@@ -601,7 +601,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       t->SetBranchAddress("phi_2",&phi2);
       t->SetBranchAddress("m_2",&m2);
       t->SetBranchAddress("gen_match_2",&gen_match_2);
-      t->SetBranchAddress("l2_decayMode",&decayMode2);
+      // t->SetBranchAddress("l2_decayMode",&decayMode2);
+      t->SetBranchAddress("decayMode_2", &decayMode2);
       t->SetBranchAddress("met",&pfmet);
       t->SetBranchAddress("metphi",&pfmetphi);
       t->SetBranchAddress("met_UESUp",&pfmet_UESUp);
@@ -1084,6 +1085,10 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                     else if (doES==1 && (gen_match_2==2 or gen_match_2==4)) ES_UP_scale=1.01; // for mu->tauh fakes in MC
                 }
                 else if (year==2018){
+		  std::cout << ">>> tau ES year 2018: doES == " << doES << ", "
+			    << "gen_match_2 == " << gen_match_2 << ", "
+			    << "decayMode2 == " << decayMode2 << ", "
+			    << "eta2 == " << eta2 << std::endl;
                     if (doES==2 && gen_match_2==5 && decayMode2==0) ES_UP_scale=1.0039; // for real taus in embedded
                     else if (doES==2 && gen_match_2==5 && decayMode2==1) ES_UP_scale=1.0037; // for real taus in embedded
                     else if (doES==2 && gen_match_2==5 && decayMode2==10) ES_UP_scale=1.0032; // for real taus in embedded
@@ -1119,6 +1124,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                 }
 
 
+		std::cout << ">>> Tau ES: ES_UP_scale = " << ES_UP_scale << std::endl;
+		
                 double pt2_UP;
                 double mass2_UP=m2;
                 if (decayMode2!=0) mass2_UP = m2 * ES_UP_scale;
@@ -1240,6 +1247,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
                 }
 
 
+		std::cout << ">>> Tau ES: ES_DOWN_scale = " << ES_DOWN_scale << std::endl;
+		
                 double pt2_DOWN;
                 double mass2_DOWN = m2;
                 pt2_DOWN = pt2 * ES_DOWN_scale;
@@ -1258,6 +1267,7 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
 
 	    }
 	    else{
+	      std::cout << ">>> Tau ES shift: Not doing anything, use central values" << std::endl;
 	       svFitMass_DOWN=svFitMass;
                svFitMass_UP=svFitMass;
                svFitPhi_DOWN=svFitPhi;
