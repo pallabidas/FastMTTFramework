@@ -251,15 +251,22 @@ if __name__ == "__main__":
 #    for j in range(0,len(name)/5):
 #       line=line+"python svFitSubmitter.py -sd /hdfs/store/user/caillol/haabbtt_"+args.channel+args.year+"_7sep_merged/Out_"+name[j*5]+" -es="+name[j*5+1]+" -ues="+name[j*5+2]+" -res="+name[j*5+3]+" -jes="+name[j*5+4]+" -year="+args.year+" --channel='"+args.channel+"' --jobName haabbtt_"+args.channel+args.year+"_svfitted_7sep" + "\n"
 
+    resProcesses = ""
     for processInfo in names:
         process = processInfo[0]
         doES    = processInfo[1]
         doUES   = processInfo[2]
-        # doRes   = processInfo[3]
-        doRes   = "0"   # temporary: no recoil corrections
+        doRes   = processInfo[3]
         doJES   = processInfo[4] 
 
-        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/hToAA/skims/"+args.channel+args.year+"/Apr-04-2022-18h26m-DataMC2018_JERsys_withTES/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + args.year + "  --channel='" + args.channel + "' --jobName haabbtt_" + args.channel+args.year+"_svfitted" + "\n"
+#        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/hToAA/skims/"+args.channel+args.year+"/Apr-04-2022-18h26m-DataMC2018_JERsys_withTES/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + args.year + "  --channel='" + args.channel + "' --jobName haabbtt_" + args.channel+args.year + "_svfitted" + "\n"
+
+        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/haabbtt_mt2018/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + args.year + "  --channel='" + args.channel + "' --jobName haabbtt_" + args.channel+args.year + "_svfitted" + "\n" 
+
+        if (doRes == "1"):
+            resProcesses = resProcesses + ", " + process
+
+    print(resProcesses)
 
     all_File.write(line)
     all_File.close()
