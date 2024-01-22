@@ -9,7 +9,7 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
 
-    name2016=[
+    names2016=[
        "DY1_v1","1","0","1","0",
        "DY2_v1","1","0","1","0",
        "DY3","1","0","1","0",
@@ -93,7 +93,7 @@ if __name__ == "__main__":
        "DataH","0","0","0","0",
     ]
 
-    name2017=[
+    names2017=[
        "DY1","1","0","1","0",
        "DY2","1","0","1","0",
        "DY3","1","0","1","0",
@@ -174,16 +174,15 @@ if __name__ == "__main__":
         ["DY2JetsToLL", "1","0","1","0"],
         ["DY3JetsToLL", "1","0","1","0"],
         ["DY4JetsToLL", "1","0","1","0"],
-        ["DYJetsToLL",  "1","0","1","0"],
+        ["DYJetsToLL_M-50",  "1","0","1","0"],
         ["DYJetsToLL_M-10to50", "1","0","1","0"],
 
-        ["ggZH_HToTauTau_ZToLL", "1","1","0","1"],
-        ["ggZH_HToTauTau_ZToNuNu", "1","1","0","1"],
-        ["ggZH_HToTauTau_ZToQQ", "1","1","0","1"],
+        ["GluGluZH_HToWW_ZTo2L", "1","1","0","1"],
+        ["GluGluZH_HToWWTo2L2Nu", "1","1","0","1"],
 
         ["GluGluHToTauTau", "1","0","1","0"],
         ["GluGluHToWWTo2L2Nu", "1","0","1","0"],  
-        ["GluGluZH_HToWW",     "1","1","0","1"],
+
         ["HWminusJ_HToWW", "1","1","0","1"],
         ["HWplusJ_HToWW",  "1","1","0","1"],
         ["HZJ_HToWW",      "1","1","0","1"],
@@ -201,9 +200,7 @@ if __name__ == "__main__":
 
         ["TTTo2L2Nu",             "1","1","0","1"],
         ["TTToHadronic",          "1","1","0","1"],
-        ["TTToHadronic-ext2",     "1","1","0","1"],
         ["TTToSemiLeptonic",      "1","1","0","1"],
-        ["TTToSemiLeptonic-ext3", "1","1","0","1"],
 
         ["VBFHToTauTau",    "1","0","1","0"],
 
@@ -219,12 +216,12 @@ if __name__ == "__main__":
         ["WminusHToTauTau", "1","1","0","1"], 
         ["WplusHToTauTau",  "1","1","0","1"],
 
-        ["WZTo2L2Q", "1","1","0","1"],
+        ["WZTo2Q2L", "1","1","0","1"],
         ["WZTo3LNu", "1","1","0","1"],
 
         ["ZHToTauTau", "1","1","0","1"],
 
-        ["ZZTo2L2Q", "1","1","0","1"],
+        ["ZZTo2Q2L", "1","1","0","1"],
         ["ZZTo4L",   "1","1","0","1"],
         ["Embedded-Run2018A-MuTau", "2","0","0","0"],
         ["Embedded-Run2018B-MuTau", "2","0","0","0"],
@@ -233,18 +230,34 @@ if __name__ == "__main__":
         ["SingleMuon-Run2018A", "0","0","0","0"],
         ["SingleMuon-Run2018B", "0","0","0","0"],
         ["SingleMuon-Run2018C", "0","0","0","0"],
-        ["SingleMuon-Run2018D", "0","0","0","0"]
-        
+        ["SingleMuon-Run2018D", "0","0","0","0"],
+
+        ["Embedded-Run2018A-ElTau", "2","0","0","0"],
+        ["Embedded-Run2018B-ElTau", "2","0","0","0"],
+        ["Embedded-Run2018C-ElTau", "2","0","0","0"],
+        ["Embedded-Run2018D-ElTau", "2","0","0","0"],
+        ["EGamma-Run2018A", "0","0","0","0"],
+        ["EGamma-Run2018B", "0","0","0","0"],
+        ["EGamma-Run2018C", "0","0","0","0"],
+        ["EGamma-Run2018D", "0","0","0","0"],
+
+
+        ["Embedded-Run2018A-EMu", "2","0","0","0"],
+        ["Embedded-Run2018B-EMu", "2","0","0","0"],
+        ["Embedded-Run2018C-EMu", "2","0","0","0"],
+        ["Embedded-Run2018D-EMu", "2","0","0","0"],
+        ["MuonEG-Run2018A", "0","0","0","0"],
+        ["MuonEG-Run2018B", "0","0","0","0"],
+        ["MuonEG-Run2018C", "0","0","0","0"],
+        ["MuonEG-Run2018D", "0","0","0","0"], 
+
     ]
 
-    # name=name2016
-    # if args.year=="2017":
-    #   name=name2017
-    # if args.year=="2018":
-    #   name=name2018
-
-
-    names = names2018
+    names=names2016
+    if args.year=="2017":
+      names=names2017
+    if args.year=="2018":
+      names=names2018
 
     all_File = open("do_submit_"+args.channel+args.year+".sh" , 'w')
     line=""
@@ -259,14 +272,16 @@ if __name__ == "__main__":
         doRes   = processInfo[3]
         doJES   = processInfo[4] 
 
-#        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/hToAA/skims/"+args.channel+args.year+"/Apr-04-2022-18h26m-DataMC2018_JERsys_withTES/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + args.year + "  --channel='" + args.channel + "' --jobName haabbtt_" + args.channel+args.year + "_svfitted" + "\n"
+        doES = "0"
+        doUES = "0"
+        doRes = "0"
+        doJES = "0"
 
-        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/haabbtt_mt2018/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + args.year + "  --channel='" + args.channel + "' --jobName haabbtt_" + args.channel+args.year + "_svfitted" + "\n" 
+        line=line+"python svFitSubmitter.py -sd /hdfs/store/user/skkwan/hToA1A2/benchmark/"+process + " -es=" + doES + " -ues=" + doUES + " -res=" + doRes + " -jes=" + doJES + "  -year=" + str(args.year) + "  --channel='" + args.channel + "' --jobName fastmtt_" + args.channel + str(args.year) + "\n" 
 
         if (doRes == "1"):
             resProcesses = resProcesses + ", " + process
 
-    print(resProcesses)
 
     all_File.write(line)
     all_File.close()
