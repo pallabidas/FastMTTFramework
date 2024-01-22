@@ -18,5 +18,5 @@
 </bin>
 <bin   name="SVFitStandAloneFSATauDM_emu_norecoil" file="SVFitStandAloneFSATauDM_emu_norecoil.cc">
 </bin>
-
+<bin   name="SVFit" file="SVFit.cc">
 </bin>

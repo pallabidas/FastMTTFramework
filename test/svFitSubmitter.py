@@ -90,6 +90,8 @@ def main(argv=None):
        bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_mutau_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
     if args.channel=="tt":
        bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFitStandAloneFSATauDM_tautau_norecoil inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
+    if args.channel=="all":
+        bashScript += '$CMSSW_BASE/bin/$SCRAM_ARCH/SVFit inputfile=$value newOutputFile=1.0 newFile=\'$OUTPUT\'' #% (channel, sample_name, period)
     if args.doES : doES = "doES="+args.doES
     else : doES = ''
     bashScript += ' %s' % (doES)

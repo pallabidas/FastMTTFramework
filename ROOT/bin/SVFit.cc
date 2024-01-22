@@ -127,14 +127,27 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          float svFitPt = -10;
          float svFitEta = -10;
          float svFitPhi = -10;
+
          float svFitMass_es1_UP = -10;
          float svFitPt_es1_UP = -10;
          float svFitEta_es1_UP = -10;
          float svFitPhi_es1_UP = -10;
-         float svFitMass_DOWN = -10;
-         float svFitPt_DOWN = -10;
-         float svFitEta_DOWN = -10;
-         float svFitPhi_DOWN = -10;
+
+         float svFitMass_es1_DOWN = -10;
+         float svFitPt_es1_DOWN = -10;
+         float svFitEta_es1_DOWN = -10;
+         float svFitPhi_es1_DOWN = -10;
+
+         float svFitMass_es2_UP = -10;
+         float svFitPt_es2_UP = -10;
+         float svFitEta_es2_UP = -10;
+         float svFitPhi_es2_UP = -10;
+
+         float svFitMass_es2_DOWN = -10;
+         float svFitPt_es2_DOWN = -10;
+         float svFitEta_es2_DOWN = -10;
+         float svFitPhi_es2_DOWN = -10;
+
          float svFitMass_UESUp = -10;
          float svFitPt_UESUp = -10;
          float svFitEta_UESUp = -10;
@@ -143,14 +156,6 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          float svFitPt_UESDown = -10;
          float svFitEta_UESDown = -10;
          float svFitPhi_UESDown = -10;
-         float svFitMass_MESUp = -10;
-         float svFitPt_MESUp = -10;
-         float svFitEta_MESUp = -10;
-         float svFitPhi_MESUp = -10;
-         float svFitMass_MESDown = -10;
-         float svFitPt_MESDown = -10;
-         float svFitEta_MESDown = -10;
-         float svFitPhi_MESDown = -10;
 
          float svFitMass_ResolutionUp = -10;
          float svFitPt_ResolutionUp = -10;
@@ -278,12 +283,12 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          float svFitPhi_JetRelativeSampleDown = -10;
 
          TBranch *newBranch1 = t->Branch("m_sv", &svFitMass, "m_sv/F");
-         TBranch *newBranch1D = t->Branch("m_sv_DOWN", &svFitMass_DOWN, "m_sv_DOWN/F");
-         TBranch *newBranch1U = t->Branch("m_sv_UP", &svFitMass_es1_UP, "m_sv_UP/F");
+         TBranch *newBranch1_es1_D = t->Branch("m_sv_es1_DOWN", &svFitMass_es1_DOWN, "m_sv_es1_DOWN/F");
+         TBranch *newBranch1_es1_U = t->Branch("m_sv_es1_UP",   &svFitMass_es1_UP,   "m_sv_es1_UP/F");
+         TBranch *newBranch1_es2_D = t->Branch("m_sv_es2_DOWN", &svFitMass_es2_DOWN, "m_sv_es2_DOWN/F");
+         TBranch *newBranch1_es2_U = t->Branch("m_sv_es2_UP",   &svFitMass_es2_UP,   "m_sv_es2_UP/F");
          TBranch *newBranch1UU = t->Branch("m_sv_UESUp", &svFitMass_UESUp, "m_sv_UESUp/F");
          TBranch *newBranch1UD = t->Branch("m_sv_UESDown", &svFitMass_UESDown, "m_sv_UESDown/F");
-         TBranch *newBranch1MU = t->Branch("m_sv_muonESUp", &svFitMass_MESUp, "m_sv_muonESUp/F");
-         TBranch *newBranch1MD = t->Branch("m_sv_muonESDown", &svFitMass_MESDown, "m_sv_muonESDown/F");
          TBranch *newBranch1ResponseU = t->Branch("m_sv_ResponseUp", &svFitMass_ResponseUp, "m_sv_ResponseUp/F");
          TBranch *newBranch1ResponseD = t->Branch("m_sv_ResponseDown", &svFitMass_ResponseDown, "m_sv_ResponseDown/F");
          TBranch *newBranch1ResolutionU = t->Branch("m_sv_ResolutionUp", &svFitMass_ResolutionUp, "m_sv_ResolutionUp/F");
@@ -314,12 +319,12 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranch1JERD = t->Branch("m_sv_JERDown", &svFitMass_JERDown, "m_sv_JERDown/F");
 
          TBranch *newBranchPt1 = t->Branch("pt_sv", &svFitPt, "pt_sv/F");
-         TBranch *newBranchPt1D = t->Branch("pt_sv_DOWN", &svFitPt_DOWN, "pt_sv_DOWN/F");
-         TBranch *newBranchPt1U = t->Branch("pt_sv_UP", &svFitPt_es1_UP, "pt_sv_UP/F");
+         TBranch *newBranchPt1_es1_D = t->Branch("pt_sv_es1_DOWN", &svFitPt_es1_DOWN, "pt_sv_es1_DOWN/F");
+         TBranch *newBranchPt1_es1_U = t->Branch("pt_sv_es1_UP",   &svFitPt_es1_UP,   "pt_sv_es1_UP/F");
+         TBranch *newBranchPt1_es2_D = t->Branch("pt_sv_es2_DOWN", &svFitPt_es2_DOWN, "pt_sv_es2_DOWN/F");
+         TBranch *newBranchPt1_es2_U = t->Branch("pt_sv_es2_UP",   &svFitPt_es2_UP,   "pt_sv_es2_UP/F");
          TBranch *newBranchPt1UU = t->Branch("pt_sv_UESUp", &svFitPt_UESUp, "pt_sv_UESUp/F");
          TBranch *newBranchPt1UD = t->Branch("pt_sv_UESDown", &svFitPt_UESDown, "pt_sv_UESDown/F");
-         TBranch *newBranchPt1MU = t->Branch("pt_sv_muonESUp", &svFitPt_MESUp, "pt_sv_muonESUp/F");
-         TBranch *newBranchPt1MD = t->Branch("pt_sv_muonESDown", &svFitPt_MESDown, "pt_sv_muonESDown/F");
          TBranch *newBranchPt1ResponseU = t->Branch("pt_sv_ResponseUp", &svFitPt_ResponseUp, "pt_sv_ResponseUp/F");
          TBranch *newBranchPt1ResponseD = t->Branch("pt_sv_ResponseDown", &svFitPt_ResponseDown, "pt_sv_ResponseDown/F");
          TBranch *newBranchPt1ResolutionU = t->Branch("pt_sv_ResolutionUp", &svFitPt_ResolutionUp, "pt_sv_ResolutionUp/F");
@@ -350,12 +355,12 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranchPt1JERD = t->Branch("pt_sv_JERDown", &svFitPt_JERDown, "pt_sv_JERDown/F");
 
          TBranch *newBranchEta1 = t->Branch("eta_sv", &svFitEta, "eta_sv/F");
-         TBranch *newBranchEta1D = t->Branch("eta_sv_DOWN", &svFitEta_DOWN, "eta_sv_DOWN/F");
-         TBranch *newBranchEta1U = t->Branch("eta_sv_UP", &svFitEta_es1_UP, "eta_sv_UP/F");
+         TBranch *newBranchEta1_es1_D = t->Branch("eta_sv_es1_DOWN", &svFitEta_es1_DOWN, "eta_sv_es1_DOWN/F");
+         TBranch *newBranchEta1_es1_U = t->Branch("eta_sv_es1_UP",   &svFitEta_es1_UP,   "eta_sv_es1_UP/F");
+         TBranch *newBranchEta1_es2_D = t->Branch("eta_sv_es2_DOWN", &svFitEta_es2_DOWN, "eta_sv_es2_DOWN/F");
+         TBranch *newBranchEta1_es2_U = t->Branch("eta_sv_es2_UP",   &svFitEta_es2_UP,   "eta_sv_es2_UP/F");
          TBranch *newBranchEta1UU = t->Branch("eta_sv_UESUp", &svFitEta_UESUp, "eta_sv_UESUp/F");
          TBranch *newBranchEta1UD = t->Branch("eta_sv_UESDown", &svFitEta_UESDown, "eta_sv_UESDown/F");
-         TBranch *newBranchEta1MU = t->Branch("eta_sv_muonESUp", &svFitEta_MESUp, "eta_sv_muonESUp/F");
-         TBranch *newBranchEta1MD = t->Branch("eta_sv_muonESDown", &svFitEta_MESDown, "eta_sv_muonESDown/F");
          TBranch *newBranchEta1ResponseU = t->Branch("eta_sv_ResponseUp", &svFitEta_ResponseUp, "eta_sv_ResponseUp/F");
          TBranch *newBranchEta1ResponseD = t->Branch("eta_sv_ResponseDown", &svFitEta_ResponseDown, "eta_sv_ResponseDown/F");
          TBranch *newBranchEta1ResolutionU = t->Branch("eta_sv_ResolutionUp", &svFitEta_ResolutionUp, "eta_sv_ResolutionUp/F");
@@ -386,12 +391,12 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranchEta1JERD = t->Branch("eta_sv_JERDown", &svFitEta_JERDown, "eta_sv_JERDown/F");
 
          TBranch *newBranchPhi1 = t->Branch("phi_sv", &svFitPhi, "phi_sv/F");
-         TBranch *newBranchPhi1D = t->Branch("phi_sv_DOWN", &svFitPhi_DOWN, "phi_sv_DOWN/F");
-         TBranch *newBranchPhi1U = t->Branch("phi_sv_UP", &svFitPhi_es1_UP, "phi_sv_UP/F");
+         TBranch *newBranchPhi1_es1_D = t->Branch("phi_sv_es1_DOWN", &svFitPhi_es1_DOWN, "phi_sv_es1_DOWN/F");
+         TBranch *newBranchPhi1_es1_U = t->Branch("phi_sv_es1_UP",   &svFitPhi_es1_UP,   "phi_sv_es1_UP/F");
+         TBranch *newBranchPhi1_es2_D = t->Branch("phi_sv_es2_DOWN", &svFitPhi_es2_DOWN, "phi_sv_es2_DOWN/F");
+         TBranch *newBranchPhi1_es2_U = t->Branch("phi_sv_es2_UP",   &svFitPhi_es2_UP,   "phi_sv_es2_UP/F");
          TBranch *newBranchPhi1UU = t->Branch("phi_sv_UESUp", &svFitPhi_UESUp, "phi_sv_UESUp/F");
          TBranch *newBranchPhi1UD = t->Branch("phi_sv_UESDown", &svFitPhi_UESDown, "phi_sv_UESDown/F");
-         TBranch *newBranchPhi1MU = t->Branch("phi_sv_muonESUp", &svFitPhi_MESUp, "phi_sv_muonESUp/F");
-         TBranch *newBranchPhi1MD = t->Branch("phi_sv_muonESDown", &svFitPhi_MESDown, "phi_sv_muonESDown/F");
          TBranch *newBranchPhi1ResponseU = t->Branch("phi_sv_ResponseUp", &svFitPhi_ResponseUp, "phi_sv_ResponseUp/F");
          TBranch *newBranchPhi1ResponseD = t->Branch("phi_sv_ResponseDown", &svFitPhi_ResponseDown, "phi_sv_ResponseDown/F");
          TBranch *newBranchPhi1ResolutionU = t->Branch("phi_sv_ResolutionUp", &svFitPhi_ResolutionUp, "phi_sv_ResolutionUp/F");
@@ -439,11 +444,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          float pfCovMatrix11;
 
          float pt_1_es1Up, pt_1_es1Down;
-         float m_1_es1Up, m_1_es1Down;
          float pt_2_es2Up, pt_2_es2Down;
          float m_2_es2Up, m_2_es2Down;
-         float met_es1Up, met_es1Down, met_es2Up, met_es2Down;
-         float metphi_es1Up, metphi_es1Down, metphi_es2Up, metphi_es2Down;
 
          // define MET
          double measuredMETx = 0.;
@@ -513,6 +515,14 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
 
          float pfmet;
          float pfmetphi;
+         float pfmet_es1Up;
+         float pfmetphi_es1Up;
+         float pfmet_es1Down;
+         float pfmetphi_es1Down;
+         float pfmet_es2Up;
+         float pfmetphi_es2Up;
+         float pfmet_es2Down;
+         float pfmetphi_es2Down;
          float pfmet_UESDown;
          float pfmetphi_UESDown;
          float pfmet_UESUp;
@@ -609,24 +619,36 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TLorentzVector TMet_JERDown(0,0,0,0);
 
          TMatrixD covMET(2, 2);
-         TBranch *pt1branch;
 
          t->SetBranchAddress("evt",&evt);
          t->SetBranchAddress("run",&run);
          t->SetBranchAddress("lumi",&lumi);
-         t->SetBranchAddress("pt_1_nominal",&pt1,&pt1branch);
-         t->SetBranchAddress("eta_1",&eta1);
-         t->SetBranchAddress("phi_1",&phi1);
-         t->SetBranchAddress("pt_2_nominal",&pt2);
-         t->SetBranchAddress("eta_2",&eta2);
-         t->SetBranchAddress("phi_2",&phi2);
-         t->SetBranchAddress("m_2_nominal",&m2);
+         t->SetBranchAddress("pt_1_nominal",&pt_1);
+         t->SetBranchAddress("eta_1",&eta_1);
+         t->SetBranchAddress("phi_1",&phi_1);
+         t->SetBranchAddress("pt_2_nominal",&pt_2);
+         t->SetBranchAddress("eta_2",&eta_2);
+         t->SetBranchAddress("phi_2",&phi_2);
+         t->SetBranchAddress("m_2_nominal",&m_2);
+         t->SetBranchAddress("pt_1_es1Up",&pt_1_es1Up);
+         t->SetBranchAddress("pt_1_es1Down",&pt_1_es1Down);
+         t->SetBranchAddress("pt_2_es2Up",  &pt_2_es2Up);
+         t->SetBranchAddress("pt_2_es2Down",&pt_2_es2Down);
+         t->SetBranchAddress("m_2_es2Up",  &m_2_es2Up);
+         t->SetBranchAddress("m_2_es2Down",&m_2_es2Down);
          t->SetBranchAddress("gen_match_2",&gen_match_2);
-         // t->SetBranchAddress("l2_decayMode",&decayMode2);
-         t->SetBranchAddress("decayMode_2", &decayMode2);
+         t->SetBranchAddress("decayMode_2", &decayMode_2);
          t->SetBranchAddress("channel", &channel);
          t->SetBranchAddress("met_nominal",&pfmet);
          t->SetBranchAddress("metphi_nominal",&pfmetphi);
+         t->SetBranchAddress("met_es1Up",  &pfmet_es1Up);
+         t->SetBranchAddress("met_es1Down",&pfmet_es1Down);
+         t->SetBranchAddress("met_es2Up",  &pfmet_es2Up);
+         t->SetBranchAddress("met_es2Down",&pfmet_es2Down);
+         t->SetBranchAddress("metphi_es1Up",  &pfmetphi_es1Up);
+         t->SetBranchAddress("metphi_es1Down",&pfmetphi_es1Down);
+         t->SetBranchAddress("metphi_es2Up",  &pfmetphi_es2Up);
+         t->SetBranchAddress("metphi_es2Down",&pfmetphi_es2Down);
          t->SetBranchAddress("met_UESUp",&pfmet_UESUp);
          t->SetBranchAddress("metphi_UESUp",&pfmetphi_UESUp);
          t->SetBranchAddress("met_UESDown",&pfmet_UESDown);
@@ -704,557 +726,555 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          svFitAlgo.setLikelihoodFileName("testClassicSVfit.root");*/
 
          for (Int_t i = 0; i < t->GetEntries(); ++i) {
-         t->GetEntry(i);
+            t->GetEntry(i);
 
-         TMet.SetPtEtaPhiM(pfmet,0,pfmetphi,0);
-         measuredMETx = pfmet*TMath::Cos(pfmetphi);
-         measuredMETy = pfmet*TMath::Sin(pfmetphi);
+            TMet.SetPtEtaPhiM(pfmet,0,pfmetphi,0);
+            measuredMETx = pfmet*TMath::Cos(pfmetphi);
+            measuredMETy = pfmet*TMath::Sin(pfmetphi);
 
-         TMet_UESUp.SetPtEtaPhiM(pfmet_UESUp,0,pfmetphi_UESUp,0);
-         measuredMETx_UESUp = pfmet_UESUp*TMath::Cos(pfmetphi_UESUp);
-         measuredMETy_UESUp = pfmet_UESUp*TMath::Sin(pfmetphi_UESUp);
-         TMet_UESDown.SetPtEtaPhiM(pfmet_UESDown,0,pfmetphi_UESDown,0);
-         measuredMETx_UESDown = pfmet_UESDown*TMath::Cos(pfmetphi_UESDown);
-         measuredMETy_UESDown = pfmet_UESDown*TMath::Sin(pfmetphi_UESDown);
+            TMet_UESUp.SetPtEtaPhiM(pfmet_UESUp,0,pfmetphi_UESUp,0);
+            measuredMETx_UESUp = pfmet_UESUp*TMath::Cos(pfmetphi_UESUp);
+            measuredMETy_UESUp = pfmet_UESUp*TMath::Sin(pfmetphi_UESUp);
+            TMet_UESDown.SetPtEtaPhiM(pfmet_UESDown,0,pfmetphi_UESDown,0);
+            measuredMETx_UESDown = pfmet_UESDown*TMath::Cos(pfmetphi_UESDown);
+            measuredMETy_UESDown = pfmet_UESDown*TMath::Sin(pfmetphi_UESDown);
 
-         TMet_ResolutionUp.SetPtEtaPhiM(pfmet_ResolutionUp,0,pfmetphi_ResolutionUp,0);
-         measuredMETx_ResolutionUp = pfmet_ResolutionUp*TMath::Cos(pfmetphi_ResolutionUp);
-         measuredMETy_ResolutionUp = pfmet_ResolutionUp*TMath::Sin(pfmetphi_ResolutionUp);
-         TMet_ResolutionDown.SetPtEtaPhiM(pfmet_ResolutionDown,0,pfmetphi_ResolutionDown,0);
-         measuredMETx_ResolutionDown = pfmet_ResolutionDown*TMath::Cos(pfmetphi_ResolutionDown);
-         measuredMETy_ResolutionDown = pfmet_ResolutionDown*TMath::Sin(pfmetphi_ResolutionDown);
-         TMet_ResponseUp.SetPtEtaPhiM(pfmet_ResponseUp,0,pfmetphi_ResponseUp,0);
-         measuredMETx_ResponseUp = pfmet_ResponseUp*TMath::Cos(pfmetphi_ResponseUp);
-         measuredMETy_ResponseUp = pfmet_ResponseUp*TMath::Sin(pfmetphi_ResponseUp);
-         TMet_ResponseDown.SetPtEtaPhiM(pfmet_ResponseDown,0,pfmetphi_ResponseDown,0);
-         measuredMETx_ResponseDown = pfmet_ResponseDown*TMath::Cos(pfmetphi_ResponseDown);
-         measuredMETy_ResponseDown = pfmet_ResponseDown*TMath::Sin(pfmetphi_ResponseDown);
+            TMet_ResolutionUp.SetPtEtaPhiM(pfmet_ResolutionUp,0,pfmetphi_ResolutionUp,0);
+            measuredMETx_ResolutionUp = pfmet_ResolutionUp*TMath::Cos(pfmetphi_ResolutionUp);
+            measuredMETy_ResolutionUp = pfmet_ResolutionUp*TMath::Sin(pfmetphi_ResolutionUp);
+            TMet_ResolutionDown.SetPtEtaPhiM(pfmet_ResolutionDown,0,pfmetphi_ResolutionDown,0);
+            measuredMETx_ResolutionDown = pfmet_ResolutionDown*TMath::Cos(pfmetphi_ResolutionDown);
+            measuredMETy_ResolutionDown = pfmet_ResolutionDown*TMath::Sin(pfmetphi_ResolutionDown);
+            TMet_ResponseUp.SetPtEtaPhiM(pfmet_ResponseUp,0,pfmetphi_ResponseUp,0);
+            measuredMETx_ResponseUp = pfmet_ResponseUp*TMath::Cos(pfmetphi_ResponseUp);
+            measuredMETy_ResponseUp = pfmet_ResponseUp*TMath::Sin(pfmetphi_ResponseUp);
+            TMet_ResponseDown.SetPtEtaPhiM(pfmet_ResponseDown,0,pfmetphi_ResponseDown,0);
+            measuredMETx_ResponseDown = pfmet_ResponseDown*TMath::Cos(pfmetphi_ResponseDown);
+            measuredMETy_ResponseDown = pfmet_ResponseDown*TMath::Sin(pfmetphi_ResponseDown);
 
-         TMet_JetAbsoluteUp.SetPtEtaPhiM(pfmet_JetAbsoluteUp,0,pfmetphi_JetAbsoluteUp,0);
-         measuredMETx_JetAbsoluteUp = pfmet_JetAbsoluteUp*TMath::Cos(pfmetphi_JetAbsoluteUp);
-         measuredMETy_JetAbsoluteUp = pfmet_JetAbsoluteUp*TMath::Sin(pfmetphi_JetAbsoluteUp);
-         TMet_JetAbsoluteDown.SetPtEtaPhiM(pfmet_JetAbsoluteDown,0,pfmetphi_JetAbsoluteDown,0);
-         measuredMETx_JetAbsoluteDown = pfmet_JetAbsoluteDown*TMath::Cos(pfmetphi_JetAbsoluteDown);
-         measuredMETy_JetAbsoluteDown = pfmet_JetAbsoluteDown*TMath::Sin(pfmetphi_JetAbsoluteDown);
-         TMet_JetAbsoluteyearUp.SetPtEtaPhiM(pfmet_JetAbsoluteyearUp,0,pfmetphi_JetAbsoluteyearUp,0);
-         measuredMETx_JetAbsoluteyearUp = pfmet_JetAbsoluteyearUp*TMath::Cos(pfmetphi_JetAbsoluteyearUp);
-         measuredMETy_JetAbsoluteyearUp = pfmet_JetAbsoluteyearUp*TMath::Sin(pfmetphi_JetAbsoluteyearUp);
-         TMet_JetAbsoluteyearDown.SetPtEtaPhiM(pfmet_JetAbsoluteyearDown,0,pfmetphi_JetAbsoluteyearDown,0);
-         measuredMETx_JetAbsoluteyearDown = pfmet_JetAbsoluteyearDown*TMath::Cos(pfmetphi_JetAbsoluteyearDown);
-         measuredMETy_JetAbsoluteyearDown = pfmet_JetAbsoluteyearDown*TMath::Sin(pfmetphi_JetAbsoluteyearDown);
-         TMet_JetBBEC1Up.SetPtEtaPhiM(pfmet_JetBBEC1Up,0,pfmetphi_JetBBEC1Up,0);
-         measuredMETx_JetBBEC1Up = pfmet_JetBBEC1Up*TMath::Cos(pfmetphi_JetBBEC1Up);
-         measuredMETy_JetBBEC1Up = pfmet_JetBBEC1Up*TMath::Sin(pfmetphi_JetBBEC1Up);
-         TMet_JetBBEC1Down.SetPtEtaPhiM(pfmet_JetBBEC1Down,0,pfmetphi_JetBBEC1Down,0);
-         measuredMETx_JetBBEC1Down = pfmet_JetBBEC1Down*TMath::Cos(pfmetphi_JetBBEC1Down);
-         measuredMETy_JetBBEC1Down = pfmet_JetBBEC1Down*TMath::Sin(pfmetphi_JetBBEC1Down);
-         TMet_JetBBEC1yearUp.SetPtEtaPhiM(pfmet_JetBBEC1yearUp,0,pfmetphi_JetBBEC1yearUp,0);
-         measuredMETx_JetBBEC1yearUp = pfmet_JetBBEC1yearUp*TMath::Cos(pfmetphi_JetBBEC1yearUp);
-         measuredMETy_JetBBEC1yearUp = pfmet_JetBBEC1yearUp*TMath::Sin(pfmetphi_JetBBEC1yearUp);
-         TMet_JetBBEC1yearDown.SetPtEtaPhiM(pfmet_JetBBEC1yearDown,0,pfmetphi_JetBBEC1yearDown,0);
-         measuredMETx_JetBBEC1yearDown = pfmet_JetBBEC1yearDown*TMath::Cos(pfmetphi_JetBBEC1yearDown);
-         measuredMETy_JetBBEC1yearDown = pfmet_JetBBEC1yearDown*TMath::Sin(pfmetphi_JetBBEC1yearDown);
-         TMet_JetEC2Up.SetPtEtaPhiM(pfmet_JetEC2Up,0,pfmetphi_JetEC2Up,0);
-         measuredMETx_JetEC2Up = pfmet_JetEC2Up*TMath::Cos(pfmetphi_JetEC2Up);
-         measuredMETy_JetEC2Up = pfmet_JetEC2Up*TMath::Sin(pfmetphi_JetEC2Up);
-         TMet_JetEC2Down.SetPtEtaPhiM(pfmet_JetEC2Down,0,pfmetphi_JetEC2Down,0);
-         measuredMETx_JetEC2Down = pfmet_JetEC2Down*TMath::Cos(pfmetphi_JetEC2Down);
-         measuredMETy_JetEC2Down = pfmet_JetEC2Down*TMath::Sin(pfmetphi_JetEC2Down);
-         TMet_JetEC2yearUp.SetPtEtaPhiM(pfmet_JetEC2yearUp,0,pfmetphi_JetEC2yearUp,0);
-         measuredMETx_JetEC2yearUp = pfmet_JetEC2yearUp*TMath::Cos(pfmetphi_JetEC2yearUp);
-         measuredMETy_JetEC2yearUp = pfmet_JetEC2yearUp*TMath::Sin(pfmetphi_JetEC2yearUp);
-         TMet_JetEC2yearDown.SetPtEtaPhiM(pfmet_JetEC2yearDown,0,pfmetphi_JetEC2yearDown,0);
-         measuredMETx_JetEC2yearDown = pfmet_JetEC2yearDown*TMath::Cos(pfmetphi_JetEC2yearDown);
-         measuredMETy_JetEC2yearDown = pfmet_JetEC2yearDown*TMath::Sin(pfmetphi_JetEC2yearDown);
-         TMet_JetFlavorQCDUp.SetPtEtaPhiM(pfmet_JetFlavorQCDUp,0,pfmetphi_JetFlavorQCDUp,0);
-         measuredMETx_JetFlavorQCDUp = pfmet_JetFlavorQCDUp*TMath::Cos(pfmetphi_JetFlavorQCDUp);
-         measuredMETy_JetFlavorQCDUp = pfmet_JetFlavorQCDUp*TMath::Sin(pfmetphi_JetFlavorQCDUp);
-         TMet_JetFlavorQCDDown.SetPtEtaPhiM(pfmet_JetFlavorQCDDown,0,pfmetphi_JetFlavorQCDDown,0);
-         measuredMETx_JetFlavorQCDDown = pfmet_JetFlavorQCDDown*TMath::Cos(pfmetphi_JetFlavorQCDDown);
-         measuredMETy_JetFlavorQCDDown = pfmet_JetFlavorQCDDown*TMath::Sin(pfmetphi_JetFlavorQCDDown);
-         TMet_JetHFUp.SetPtEtaPhiM(pfmet_JetHFUp,0,pfmetphi_JetHFUp,0);
-         measuredMETx_JetHFUp = pfmet_JetHFUp*TMath::Cos(pfmetphi_JetHFUp);
-         measuredMETy_JetHFUp = pfmet_JetHFUp*TMath::Sin(pfmetphi_JetHFUp);
-         TMet_JetHFDown.SetPtEtaPhiM(pfmet_JetHFDown,0,pfmetphi_JetHFDown,0);
-         measuredMETx_JetHFDown = pfmet_JetHFDown*TMath::Cos(pfmetphi_JetHFDown);
-         measuredMETy_JetHFDown = pfmet_JetHFDown*TMath::Sin(pfmetphi_JetHFDown);
-         TMet_JetHFyearUp.SetPtEtaPhiM(pfmet_JetHFyearUp,0,pfmetphi_JetHFyearUp,0);
-         measuredMETx_JetHFyearUp = pfmet_JetHFyearUp*TMath::Cos(pfmetphi_JetHFyearUp);
-         measuredMETy_JetHFyearUp = pfmet_JetHFyearUp*TMath::Sin(pfmetphi_JetHFyearUp);
-         TMet_JetHFyearDown.SetPtEtaPhiM(pfmet_JetHFyearDown,0,pfmetphi_JetHFyearDown,0);
-         measuredMETx_JetHFyearDown = pfmet_JetHFyearDown*TMath::Cos(pfmetphi_JetHFyearDown);
-         measuredMETy_JetHFyearDown = pfmet_JetHFyearDown*TMath::Sin(pfmetphi_JetHFyearDown);
-         TMet_JetRelativeBalUp.SetPtEtaPhiM(pfmet_JetRelativeBalUp,0,pfmetphi_JetRelativeBalUp,0);
-         measuredMETx_JetRelativeBalUp = pfmet_JetRelativeBalUp*TMath::Cos(pfmetphi_JetRelativeBalUp);
-         measuredMETy_JetRelativeBalUp = pfmet_JetRelativeBalUp*TMath::Sin(pfmetphi_JetRelativeBalUp);
-         TMet_JetRelativeBalDown.SetPtEtaPhiM(pfmet_JetRelativeBalDown,0,pfmetphi_JetRelativeBalDown,0);
-         measuredMETx_JetRelativeBalDown = pfmet_JetRelativeBalDown*TMath::Cos(pfmetphi_JetRelativeBalDown);
-         measuredMETy_JetRelativeBalDown = pfmet_JetRelativeBalDown*TMath::Sin(pfmetphi_JetRelativeBalDown);
-         TMet_JetRelativeSampleUp.SetPtEtaPhiM(pfmet_JetRelativeSampleUp,0,pfmetphi_JetRelativeSampleUp,0);
-         measuredMETx_JetRelativeSampleUp = pfmet_JetRelativeSampleUp*TMath::Cos(pfmetphi_JetRelativeSampleUp);
-         measuredMETy_JetRelativeSampleUp = pfmet_JetRelativeSampleUp*TMath::Sin(pfmetphi_JetRelativeSampleUp);
-         TMet_JetRelativeSampleDown.SetPtEtaPhiM(pfmet_JetRelativeSampleDown,0,pfmetphi_JetRelativeSampleDown,0);
-         measuredMETx_JetRelativeSampleDown = pfmet_JetRelativeSampleDown*TMath::Cos(pfmetphi_JetRelativeSampleDown);
-         measuredMETy_JetRelativeSampleDown = pfmet_JetRelativeSampleDown*TMath::Sin(pfmetphi_JetRelativeSampleDown);
-         TMet_JERUp.SetPtEtaPhiM(pfmet_JERUp,0,pfmetphi_JERUp,0);
-         measuredMETx_JERUp = pfmet_JERUp*TMath::Cos(pfmetphi_JERUp);
-         measuredMETy_JERUp = pfmet_JERUp*TMath::Sin(pfmetphi_JERUp);
-         TMet_JERDown.SetPtEtaPhiM(pfmet_JERDown,0,pfmetphi_JERDown,0);
-         measuredMETx_JERDown = pfmet_JERDown*TMath::Cos(pfmetphi_JERDown);
-         measuredMETy_JERDown = pfmet_JERDown*TMath::Sin(pfmetphi_JERDown);
+            TMet_JetAbsoluteUp.SetPtEtaPhiM(pfmet_JetAbsoluteUp,0,pfmetphi_JetAbsoluteUp,0);
+            measuredMETx_JetAbsoluteUp = pfmet_JetAbsoluteUp*TMath::Cos(pfmetphi_JetAbsoluteUp);
+            measuredMETy_JetAbsoluteUp = pfmet_JetAbsoluteUp*TMath::Sin(pfmetphi_JetAbsoluteUp);
+            TMet_JetAbsoluteDown.SetPtEtaPhiM(pfmet_JetAbsoluteDown,0,pfmetphi_JetAbsoluteDown,0);
+            measuredMETx_JetAbsoluteDown = pfmet_JetAbsoluteDown*TMath::Cos(pfmetphi_JetAbsoluteDown);
+            measuredMETy_JetAbsoluteDown = pfmet_JetAbsoluteDown*TMath::Sin(pfmetphi_JetAbsoluteDown);
+            TMet_JetAbsoluteyearUp.SetPtEtaPhiM(pfmet_JetAbsoluteyearUp,0,pfmetphi_JetAbsoluteyearUp,0);
+            measuredMETx_JetAbsoluteyearUp = pfmet_JetAbsoluteyearUp*TMath::Cos(pfmetphi_JetAbsoluteyearUp);
+            measuredMETy_JetAbsoluteyearUp = pfmet_JetAbsoluteyearUp*TMath::Sin(pfmetphi_JetAbsoluteyearUp);
+            TMet_JetAbsoluteyearDown.SetPtEtaPhiM(pfmet_JetAbsoluteyearDown,0,pfmetphi_JetAbsoluteyearDown,0);
+            measuredMETx_JetAbsoluteyearDown = pfmet_JetAbsoluteyearDown*TMath::Cos(pfmetphi_JetAbsoluteyearDown);
+            measuredMETy_JetAbsoluteyearDown = pfmet_JetAbsoluteyearDown*TMath::Sin(pfmetphi_JetAbsoluteyearDown);
+            TMet_JetBBEC1Up.SetPtEtaPhiM(pfmet_JetBBEC1Up,0,pfmetphi_JetBBEC1Up,0);
+            measuredMETx_JetBBEC1Up = pfmet_JetBBEC1Up*TMath::Cos(pfmetphi_JetBBEC1Up);
+            measuredMETy_JetBBEC1Up = pfmet_JetBBEC1Up*TMath::Sin(pfmetphi_JetBBEC1Up);
+            TMet_JetBBEC1Down.SetPtEtaPhiM(pfmet_JetBBEC1Down,0,pfmetphi_JetBBEC1Down,0);
+            measuredMETx_JetBBEC1Down = pfmet_JetBBEC1Down*TMath::Cos(pfmetphi_JetBBEC1Down);
+            measuredMETy_JetBBEC1Down = pfmet_JetBBEC1Down*TMath::Sin(pfmetphi_JetBBEC1Down);
+            TMet_JetBBEC1yearUp.SetPtEtaPhiM(pfmet_JetBBEC1yearUp,0,pfmetphi_JetBBEC1yearUp,0);
+            measuredMETx_JetBBEC1yearUp = pfmet_JetBBEC1yearUp*TMath::Cos(pfmetphi_JetBBEC1yearUp);
+            measuredMETy_JetBBEC1yearUp = pfmet_JetBBEC1yearUp*TMath::Sin(pfmetphi_JetBBEC1yearUp);
+            TMet_JetBBEC1yearDown.SetPtEtaPhiM(pfmet_JetBBEC1yearDown,0,pfmetphi_JetBBEC1yearDown,0);
+            measuredMETx_JetBBEC1yearDown = pfmet_JetBBEC1yearDown*TMath::Cos(pfmetphi_JetBBEC1yearDown);
+            measuredMETy_JetBBEC1yearDown = pfmet_JetBBEC1yearDown*TMath::Sin(pfmetphi_JetBBEC1yearDown);
+            TMet_JetEC2Up.SetPtEtaPhiM(pfmet_JetEC2Up,0,pfmetphi_JetEC2Up,0);
+            measuredMETx_JetEC2Up = pfmet_JetEC2Up*TMath::Cos(pfmetphi_JetEC2Up);
+            measuredMETy_JetEC2Up = pfmet_JetEC2Up*TMath::Sin(pfmetphi_JetEC2Up);
+            TMet_JetEC2Down.SetPtEtaPhiM(pfmet_JetEC2Down,0,pfmetphi_JetEC2Down,0);
+            measuredMETx_JetEC2Down = pfmet_JetEC2Down*TMath::Cos(pfmetphi_JetEC2Down);
+            measuredMETy_JetEC2Down = pfmet_JetEC2Down*TMath::Sin(pfmetphi_JetEC2Down);
+            TMet_JetEC2yearUp.SetPtEtaPhiM(pfmet_JetEC2yearUp,0,pfmetphi_JetEC2yearUp,0);
+            measuredMETx_JetEC2yearUp = pfmet_JetEC2yearUp*TMath::Cos(pfmetphi_JetEC2yearUp);
+            measuredMETy_JetEC2yearUp = pfmet_JetEC2yearUp*TMath::Sin(pfmetphi_JetEC2yearUp);
+            TMet_JetEC2yearDown.SetPtEtaPhiM(pfmet_JetEC2yearDown,0,pfmetphi_JetEC2yearDown,0);
+            measuredMETx_JetEC2yearDown = pfmet_JetEC2yearDown*TMath::Cos(pfmetphi_JetEC2yearDown);
+            measuredMETy_JetEC2yearDown = pfmet_JetEC2yearDown*TMath::Sin(pfmetphi_JetEC2yearDown);
+            TMet_JetFlavorQCDUp.SetPtEtaPhiM(pfmet_JetFlavorQCDUp,0,pfmetphi_JetFlavorQCDUp,0);
+            measuredMETx_JetFlavorQCDUp = pfmet_JetFlavorQCDUp*TMath::Cos(pfmetphi_JetFlavorQCDUp);
+            measuredMETy_JetFlavorQCDUp = pfmet_JetFlavorQCDUp*TMath::Sin(pfmetphi_JetFlavorQCDUp);
+            TMet_JetFlavorQCDDown.SetPtEtaPhiM(pfmet_JetFlavorQCDDown,0,pfmetphi_JetFlavorQCDDown,0);
+            measuredMETx_JetFlavorQCDDown = pfmet_JetFlavorQCDDown*TMath::Cos(pfmetphi_JetFlavorQCDDown);
+            measuredMETy_JetFlavorQCDDown = pfmet_JetFlavorQCDDown*TMath::Sin(pfmetphi_JetFlavorQCDDown);
+            TMet_JetHFUp.SetPtEtaPhiM(pfmet_JetHFUp,0,pfmetphi_JetHFUp,0);
+            measuredMETx_JetHFUp = pfmet_JetHFUp*TMath::Cos(pfmetphi_JetHFUp);
+            measuredMETy_JetHFUp = pfmet_JetHFUp*TMath::Sin(pfmetphi_JetHFUp);
+            TMet_JetHFDown.SetPtEtaPhiM(pfmet_JetHFDown,0,pfmetphi_JetHFDown,0);
+            measuredMETx_JetHFDown = pfmet_JetHFDown*TMath::Cos(pfmetphi_JetHFDown);
+            measuredMETy_JetHFDown = pfmet_JetHFDown*TMath::Sin(pfmetphi_JetHFDown);
+            TMet_JetHFyearUp.SetPtEtaPhiM(pfmet_JetHFyearUp,0,pfmetphi_JetHFyearUp,0);
+            measuredMETx_JetHFyearUp = pfmet_JetHFyearUp*TMath::Cos(pfmetphi_JetHFyearUp);
+            measuredMETy_JetHFyearUp = pfmet_JetHFyearUp*TMath::Sin(pfmetphi_JetHFyearUp);
+            TMet_JetHFyearDown.SetPtEtaPhiM(pfmet_JetHFyearDown,0,pfmetphi_JetHFyearDown,0);
+            measuredMETx_JetHFyearDown = pfmet_JetHFyearDown*TMath::Cos(pfmetphi_JetHFyearDown);
+            measuredMETy_JetHFyearDown = pfmet_JetHFyearDown*TMath::Sin(pfmetphi_JetHFyearDown);
+            TMet_JetRelativeBalUp.SetPtEtaPhiM(pfmet_JetRelativeBalUp,0,pfmetphi_JetRelativeBalUp,0);
+            measuredMETx_JetRelativeBalUp = pfmet_JetRelativeBalUp*TMath::Cos(pfmetphi_JetRelativeBalUp);
+            measuredMETy_JetRelativeBalUp = pfmet_JetRelativeBalUp*TMath::Sin(pfmetphi_JetRelativeBalUp);
+            TMet_JetRelativeBalDown.SetPtEtaPhiM(pfmet_JetRelativeBalDown,0,pfmetphi_JetRelativeBalDown,0);
+            measuredMETx_JetRelativeBalDown = pfmet_JetRelativeBalDown*TMath::Cos(pfmetphi_JetRelativeBalDown);
+            measuredMETy_JetRelativeBalDown = pfmet_JetRelativeBalDown*TMath::Sin(pfmetphi_JetRelativeBalDown);
+            TMet_JetRelativeSampleUp.SetPtEtaPhiM(pfmet_JetRelativeSampleUp,0,pfmetphi_JetRelativeSampleUp,0);
+            measuredMETx_JetRelativeSampleUp = pfmet_JetRelativeSampleUp*TMath::Cos(pfmetphi_JetRelativeSampleUp);
+            measuredMETy_JetRelativeSampleUp = pfmet_JetRelativeSampleUp*TMath::Sin(pfmetphi_JetRelativeSampleUp);
+            TMet_JetRelativeSampleDown.SetPtEtaPhiM(pfmet_JetRelativeSampleDown,0,pfmetphi_JetRelativeSampleDown,0);
+            measuredMETx_JetRelativeSampleDown = pfmet_JetRelativeSampleDown*TMath::Cos(pfmetphi_JetRelativeSampleDown);
+            measuredMETy_JetRelativeSampleDown = pfmet_JetRelativeSampleDown*TMath::Sin(pfmetphi_JetRelativeSampleDown);
+            TMet_JERUp.SetPtEtaPhiM(pfmet_JERUp,0,pfmetphi_JERUp,0);
+            measuredMETx_JERUp = pfmet_JERUp*TMath::Cos(pfmetphi_JERUp);
+            measuredMETy_JERUp = pfmet_JERUp*TMath::Sin(pfmetphi_JERUp);
+            TMet_JERDown.SetPtEtaPhiM(pfmet_JERDown,0,pfmetphi_JERDown,0);
+            measuredMETx_JERDown = pfmet_JERDown*TMath::Cos(pfmetphi_JERDown);
+            measuredMETy_JERDown = pfmet_JERDown*TMath::Sin(pfmetphi_JERDown);
 
 
-         covMET[0][0] =  pfCovMatrix00;
-         covMET[1][0] =  pfCovMatrix10;
-         covMET[0][1] =  pfCovMatrix01;
-         covMET[1][1] =  pfCovMatrix11;
+            covMET[0][0] =  pfCovMatrix00;
+            covMET[1][0] =  pfCovMatrix10;
+            covMET[0][1] =  pfCovMatrix01;
+            covMET[1][1] =  pfCovMatrix11;
 
-         covMET[0][0] =  300;//FIXME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-         covMET[1][1] =  300;
+            covMET[0][0] =  300;//FIXME XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+            covMET[1][1] =  300;
 
-         std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons;
-         if (channel == 0) { // mutau
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1, eta_1, phi_1, 0.10566)); 
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2, eta_2, phi_2, m_2, decayMode_2));
-         }
-         else if (channel == 1) {  // etau
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1, eta_1, phi_1, 0.51100e-3)); 
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2, eta_2, phi_2, m_2, decayMode_2));
-         }
-         else if (channel == 2) {  // emu
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2, eta_2,  phi_2, 0.10566)); 
-            measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1, eta_1,  phi_1, 0.51100e-3));
-         }
-         runSVFit(measuredTauLeptons, measuredMETx, measuredMETy, covMET, 0, svFitMass, svFitPt, svFitEta, svFitPhi);
-
-         if (doUES) {
-            runSVFit(measuredTauLeptons, measuredMETx_UESUp, measuredMETy_UESUp, covMET, 0, svFitMass_UESUp, svFitPt_UESUp, svFitEta_UESUp, svFitPhi_UESUp);
-            runSVFit(measuredTauLeptons, measuredMETx_UESDown, measuredMETy_UESDown, covMET, 0, svFitMass_UESDown, svFitPt_UESDown, svFitEta_UESDown, svFitPhi_UESDown);
-         }
-         else {
-            svFitMass_UESUp=svFitMass;
-            svFitMass_UESDown=svFitMass;
-            svFitPhi_UESUp=svFitPhi;
-            svFitPhi_UESDown=svFitPhi;
-            svFitEta_UESUp=svFitEta;
-            svFitEta_UESDown=svFitEta;
-            svFitPhi_UESUp=svFitPhi;
-            svFitPhi_UESDown=svFitPhi;
-         }
-
-         if (doJES) {
-             runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteUp, measuredMETy_JetAbsoluteUp, covMET, 0, svFitMass_JetAbsoluteUp, svFitPt_JetAbsoluteUp, svFitEta_JetAbsoluteUp, svFitPhi_JetAbsoluteUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteDown, measuredMETy_JetAbsoluteDown, covMET, 0, svFitMass_JetAbsoluteDown, svFitPt_JetAbsoluteDown, svFitEta_JetAbsoluteDown, svFitPhi_JetAbsoluteDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteyearUp, measuredMETy_JetAbsoluteyearUp, covMET, 0, svFitMass_JetAbsoluteyearUp, svFitPt_JetAbsoluteyearUp, svFitEta_JetAbsoluteyearUp, svFitPhi_JetAbsoluteyearUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteyearDown, measuredMETy_JetAbsoluteyearDown, covMET, 0, svFitMass_JetAbsoluteyearDown, svFitPt_JetAbsoluteyearDown, svFitEta_JetAbsoluteyearDown, svFitPhi_JetAbsoluteyearDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1Up, measuredMETy_JetBBEC1Up, covMET, 0, svFitMass_JetBBEC1Up, svFitPt_JetBBEC1Up, svFitEta_JetBBEC1Up, svFitPhi_JetBBEC1Up);
-             runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1Down, measuredMETy_JetBBEC1Down, covMET, 0, svFitMass_JetBBEC1Down, svFitPt_JetBBEC1Down, svFitEta_JetBBEC1Down, svFitPhi_JetBBEC1Down);
-             runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1yearUp, measuredMETy_JetBBEC1yearUp, covMET, 0, svFitMass_JetBBEC1yearUp, svFitPt_JetBBEC1yearUp, svFitEta_JetBBEC1yearUp, svFitPhi_JetBBEC1yearUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1yearDown, measuredMETy_JetBBEC1yearDown, covMET, 0, svFitMass_JetBBEC1yearDown, svFitPt_JetBBEC1yearDown, svFitEta_JetBBEC1yearDown, svFitPhi_JetBBEC1yearDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetEC2Up, measuredMETy_JetEC2Up, covMET, 0, svFitMass_JetEC2Up, svFitPt_JetEC2Up, svFitEta_JetEC2Up, svFitPhi_JetEC2Up);
-             runSVFit(measuredTauLeptons, measuredMETx_JetEC2Down, measuredMETy_JetEC2Down, covMET, 0, svFitMass_JetEC2Down, svFitPt_JetEC2Down, svFitEta_JetEC2Down, svFitPhi_JetEC2Down);
-             runSVFit(measuredTauLeptons, measuredMETx_JetEC2yearUp, measuredMETy_JetEC2yearUp, covMET, 0, svFitMass_JetEC2yearUp, svFitPt_JetEC2yearUp, svFitEta_JetEC2yearUp, svFitPhi_JetEC2yearUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetEC2yearDown, measuredMETy_JetEC2yearDown, covMET, 0, svFitMass_JetEC2yearDown, svFitPt_JetEC2yearDown, svFitEta_JetEC2yearDown, svFitPhi_JetEC2yearDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetFlavorQCDUp, measuredMETy_JetFlavorQCDUp, covMET, 0, svFitMass_JetFlavorQCDUp, svFitPt_JetFlavorQCDUp, svFitEta_JetFlavorQCDUp, svFitPhi_JetFlavorQCDUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetFlavorQCDDown, measuredMETy_JetFlavorQCDDown, covMET, 0, svFitMass_JetFlavorQCDDown, svFitPt_JetFlavorQCDDown, svFitEta_JetFlavorQCDDown, svFitPhi_JetFlavorQCDDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetHFUp, measuredMETy_JetHFUp, covMET, 0, svFitMass_JetHFUp, svFitPt_JetHFUp, svFitEta_JetHFUp, svFitPhi_JetHFUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetHFDown, measuredMETy_JetHFDown, covMET, 0, svFitMass_JetHFDown, svFitPt_JetHFDown, svFitEta_JetHFDown, svFitPhi_JetHFDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetHFyearUp, measuredMETy_JetHFyearUp, covMET, 0, svFitMass_JetHFyearUp, svFitPt_JetHFyearUp, svFitEta_JetHFyearUp, svFitPhi_JetHFyearUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetHFyearDown, measuredMETy_JetHFyearDown, covMET, 0, svFitMass_JetHFyearDown, svFitPt_JetHFyearDown, svFitEta_JetHFyearDown, svFitPhi_JetHFyearDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetRelativeBalUp, measuredMETy_JetRelativeBalUp, covMET, 0, svFitMass_JetRelativeBalUp, svFitPt_JetRelativeBalUp, svFitEta_JetRelativeBalUp, svFitPhi_JetRelativeBalUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetRelativeBalDown, measuredMETy_JetRelativeBalDown, covMET, 0, svFitMass_JetRelativeBalDown, svFitPt_JetRelativeBalDown, svFitEta_JetRelativeBalDown, svFitPhi_JetRelativeBalDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JetRelativeSampleUp, measuredMETy_JetRelativeSampleUp, covMET, 0, svFitMass_JetRelativeSampleUp, svFitPt_JetRelativeSampleUp, svFitEta_JetRelativeSampleUp, svFitPhi_JetRelativeSampleUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JetRelativeSampleDown, measuredMETy_JetRelativeSampleDown, covMET, 0, svFitMass_JetRelativeSampleDown, svFitPt_JetRelativeSampleDown, svFitEta_JetRelativeSampleDown, svFitPhi_JetRelativeSampleDown);
-             runSVFit(measuredTauLeptons, measuredMETx_JERUp, measuredMETy_JERUp, covMET, 0, svFitMass_JERUp, svFitPt_JERUp, svFitEta_JERUp, svFitPhi_JERUp);
-             runSVFit(measuredTauLeptons, measuredMETx_JERDown, measuredMETy_JERDown, covMET, 0, svFitMass_JERDown, svFitPt_JERDown, svFitEta_JERDown, svFitPhi_JERDown);
-         }
-         else {
-            svFitMass_JetAbsoluteUp=svFitMass;
-            svFitMass_JetAbsoluteDown=svFitMass;
-            svFitMass_JetAbsoluteyearUp=svFitMass;
-            svFitMass_JetAbsoluteyearDown=svFitMass;
-            svFitMass_JetBBEC1Up=svFitMass;
-            svFitMass_JetBBEC1Down=svFitMass;
-            svFitMass_JetBBEC1yearUp=svFitMass;
-            svFitMass_JetBBEC1yearDown=svFitMass;
-            svFitMass_JetEC2Up=svFitMass;
-            svFitMass_JetEC2Down=svFitMass;
-            svFitMass_JetEC2yearUp=svFitMass;
-            svFitMass_JetEC2yearDown=svFitMass;
-            svFitMass_JetFlavorQCDUp=svFitMass;
-            svFitMass_JetFlavorQCDDown=svFitMass;
-            svFitMass_JetHFUp=svFitMass;
-            svFitMass_JetHFDown=svFitMass;
-            svFitMass_JetHFyearUp=svFitMass;
-            svFitMass_JetHFyearDown=svFitMass;
-            svFitMass_JetRelativeBalUp=svFitMass;
-            svFitMass_JetRelativeBalDown=svFitMass;
-            svFitMass_JetRelativeSampleUp=svFitMass;
-            svFitMass_JetRelativeSampleDown=svFitMass;
-            svFitMass_JERUp=svFitMass;
-            svFitMass_JERDown=svFitMass;
-
-            svFitPhi_JetAbsoluteUp=svFitPhi;
-            svFitPhi_JetAbsoluteDown=svFitPhi;
-            svFitPhi_JetAbsoluteyearUp=svFitPhi;
-            svFitPhi_JetAbsoluteyearDown=svFitPhi;
-            svFitPhi_JetBBEC1Up=svFitPhi;
-            svFitPhi_JetBBEC1Down=svFitPhi;
-            svFitPhi_JetBBEC1yearUp=svFitPhi;
-            svFitPhi_JetBBEC1yearDown=svFitPhi;
-            svFitPhi_JetEC2Up=svFitPhi;
-            svFitPhi_JetEC2Down=svFitPhi;
-            svFitPhi_JetEC2yearUp=svFitPhi;
-            svFitPhi_JetEC2yearDown=svFitPhi;
-            svFitPhi_JetFlavorQCDUp=svFitPhi;
-            svFitPhi_JetFlavorQCDDown=svFitPhi;
-            svFitPhi_JetHFUp=svFitPhi;
-            svFitPhi_JetHFDown=svFitPhi;
-            svFitPhi_JetHFyearUp=svFitPhi;
-            svFitPhi_JetHFyearDown=svFitPhi;
-            svFitPhi_JetRelativeBalUp=svFitPhi;
-            svFitPhi_JetRelativeBalDown=svFitPhi;
-            svFitPhi_JetRelativeSampleUp=svFitPhi;
-            svFitPhi_JetRelativeSampleDown=svFitPhi;
-            svFitPhi_JERUp=svFitPhi;
-            svFitPhi_JERDown=svFitPhi;
-
-            svFitEta_JetAbsoluteUp=svFitEta;
-            svFitEta_JetAbsoluteDown=svFitEta;
-            svFitEta_JetAbsoluteyearUp=svFitEta;
-            svFitEta_JetAbsoluteyearDown=svFitEta;
-            svFitEta_JetBBEC1Up=svFitEta;
-            svFitEta_JetBBEC1Down=svFitEta;
-            svFitEta_JetBBEC1yearUp=svFitEta;
-            svFitEta_JetBBEC1yearDown=svFitEta;
-            svFitEta_JetEC2Up=svFitEta;
-            svFitEta_JetEC2Down=svFitEta;
-            svFitEta_JetEC2yearUp=svFitEta;
-            svFitEta_JetEC2yearDown=svFitEta;
-            svFitEta_JetFlavorQCDUp=svFitEta;
-            svFitEta_JetFlavorQCDDown=svFitEta;
-            svFitEta_JetHFUp=svFitEta;
-            svFitEta_JetHFDown=svFitEta;
-            svFitEta_JetHFyearUp=svFitEta;
-            svFitEta_JetHFyearDown=svFitEta;
-            svFitEta_JetRelativeBalUp=svFitEta;
-            svFitEta_JetRelativeBalDown=svFitEta;
-            svFitEta_JetRelativeSampleUp=svFitEta;
-            svFitEta_JetRelativeSampleDown=svFitEta;
-            svFitEta_JERUp=svFitEta;
-            svFitEta_JERDown=svFitEta;
-
-            svFitPt_JetAbsoluteUp=svFitPt;
-            svFitPt_JetAbsoluteDown=svFitPt;
-            svFitPt_JetAbsoluteyearUp=svFitPt;
-            svFitPt_JetAbsoluteyearDown=svFitPt;
-            svFitPt_JetBBEC1Up=svFitPt;
-            svFitPt_JetBBEC1Down=svFitPt;
-            svFitPt_JetBBEC1yearUp=svFitPt;
-            svFitPt_JetBBEC1yearDown=svFitPt;
-            svFitPt_JetEC2Up=svFitPt;
-            svFitPt_JetEC2Down=svFitPt;
-            svFitPt_JetEC2yearUp=svFitPt;
-            svFitPt_JetEC2yearDown=svFitPt;
-            svFitPt_JetFlavorQCDUp=svFitPt;
-            svFitPt_JetFlavorQCDDown=svFitPt;
-            svFitPt_JetHFUp=svFitPt;
-            svFitPt_JetHFDown=svFitPt;
-            svFitPt_JetHFyearUp=svFitPt;
-            svFitPt_JetHFyearDown=svFitPt;
-            svFitPt_JetRelativeBalUp=svFitPt;
-            svFitPt_JetRelativeBalDown=svFitPt;
-            svFitPt_JetRelativeSampleUp=svFitPt;
-            svFitPt_JetRelativeSampleDown=svFitPt;
-            svFitPt_JERUp=svFitPt;
-            svFitPt_JERDown=svFitPt;
-         }
-
-	      // Recoil uncertainties
-         if (doRES) {
-            runSVFit(measuredTauLeptons, measuredMETx_ResolutionUp, measuredMETy_ResolutionUp, covMET, 0, svFitMass_ResolutionUp, svFitPt_ResolutionUp, svFitEta_ResolutionUp, svFitPhi_ResolutionUp);
-            runSVFit(measuredTauLeptons, measuredMETx_ResolutionDown, measuredMETy_ResolutionDown, covMET, 0, svFitMass_ResolutionDown, svFitPt_ResolutionDown, svFitEta_ResolutionDown, svFitPhi_ResolutionDown);
-            runSVFit(measuredTauLeptons, measuredMETx_ResponseUp, measuredMETy_ResponseUp, covMET, 0, svFitMass_ResponseUp, svFitPt_ResponseUp, svFitEta_ResponseUp, svFitPhi_ResponseUp);
-            runSVFit(measuredTauLeptons, measuredMETx_ResponseDown, measuredMETy_ResponseDown, covMET, 0, svFitMass_ResponseDown, svFitPt_ResponseDown, svFitEta_ResponseDown, svFitPhi_ResponseDown);
-         }
-         else {
-            svFitMass_ResponseUp=svFitMass;
-            svFitMass_ResponseDown=svFitMass;
-            svFitMass_ResolutionUp=svFitMass;
-            svFitMass_ResolutionDown=svFitMass;
-            svFitPt_ResponseUp=svFitPt;
-            svFitPt_ResponseDown=svFitPt;
-            svFitPt_ResolutionUp=svFitPt;
-            svFitPt_ResolutionDown=svFitPt;
-            svFitEta_ResponseUp=svFitEta;
-            svFitEta_ResponseDown=svFitEta;
-            svFitEta_ResolutionUp=svFitEta;
-            svFitEta_ResolutionDown=svFitEta;
-            svFitPhi_ResponseUp=svFitPhi;
-            svFitPhi_ResponseDown=svFitPhi;
-            svFitPhi_ResolutionUp=svFitPhi;
-            svFitPhi_ResolutionDown=svFitPhi;
-         }
-
-         /* 
-          * Lepton energy scales
-          */
-	      if (doES > 0) {
-            /* 
-             * Leg 1
-             */
-
-            double metcorr_ex_es1_UP = pfmet_es1Up * TMath::Cos(pfmetphi_es1Up);
-            double metcorr_ey_es1_UP = pfmet_es1Up * TMath::Sin(pfmetphi_es1Up);
-
-            double metcorr_ex_es1_DOWN = pfmet_es1Down * TMath::Cos(pfmetphi_es1Down);
-            double metcorr_ey_es1_DOWN = pfmet_es1Down * TMath::Sin(pfmetphi_es1Down);
-
-            std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es1_UP;
-            std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es1_DOWN;
-
-            // Depending on the channel, push_back different objects to the vectors to fit
-            if (channel == 0) {
-               // Use muon ES up for the muon leg, nominal tau ES leg for tau
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1_es1Up, eta_1, phi_1, 0.10566));
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2,       eta_2, phi_2, m_2, decayMode_2));
-
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1_es1Down, eta_1, phi_1, 0.10566));
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2,         eta_2, phi_2, m_2, decayMode_2));
+            std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons;
+            if (channel == 0) { // mutau
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1, eta_1, phi_1, 0.10566)); 
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2, eta_2, phi_2, m_2, decayMode_2));
             }
-            // ETAU: LEG 1 IS ELECTRON
-            else if (channel == 1) {
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Up, eta_1, phi_1, 0.51100e-3));
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2,       eta_2, phi_2, m_2, decayMode_2));
-
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Down, eta_1, phi_1, 0.51100e-3));
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2,         eta_2, phi_2, m_2, decayMode_2));
+            else if (channel == 1) {  // etau
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1, eta_1, phi_1, 0.51100e-3)); 
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2, eta_2, phi_2, m_2, decayMode_2));
             }
-            // EMU: LEG 1 IS ELECTRON, LEG 2 IS MUON
-            else if (channel == 2) {
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2,       eta_2, phi_2, 0.10566));
-               measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Up, eta_1, phi_1, 0.51100e-3));
+            else if (channel == 2) {  // emu
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2, eta_2,  phi_2, 0.10566)); 
+               measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1, eta_1,  phi_1, 0.51100e-3));
+            }
+            runSVFit(measuredTauLeptons, measuredMETx, measuredMETy, covMET, 0, svFitMass, svFitPt, svFitEta, svFitPhi);
 
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2,         eta_2, phi_2, 0.10566));
-               measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Down, eta_1, phi_1, 0.51100e-3));
+            if (doUES) {
+               runSVFit(measuredTauLeptons, measuredMETx_UESUp, measuredMETy_UESUp, covMET, 0, svFitMass_UESUp, svFitPt_UESUp, svFitEta_UESUp, svFitPhi_UESUp);
+               runSVFit(measuredTauLeptons, measuredMETx_UESDown, measuredMETy_UESDown, covMET, 0, svFitMass_UESDown, svFitPt_UESDown, svFitEta_UESDown, svFitPhi_UESDown);
+            }
+            else {
+               svFitMass_UESUp=svFitMass;
+               svFitMass_UESDown=svFitMass;
+               svFitPhi_UESUp=svFitPhi;
+               svFitPhi_UESDown=svFitPhi;
+               svFitEta_UESUp=svFitEta;
+               svFitEta_UESDown=svFitEta;
+               svFitPhi_UESUp=svFitPhi;
+               svFitPhi_UESDown=svFitPhi;
             }
 
-            // Call SVFit
-            runSVFit(measuredTauLeptons_es1_UP,   metcorr_ex_es1_UP,   metcorr_ey_es1_UP,   covMET, 0, svFitMass_es1_UP,   svFitPt_es1_UP,   svFitEta_es1_UP,   svFitPhi_es1_UP);
-            runSVFit(measuredTauLeptons_es1_DOWN, metcorr_ex_es1_DOWN, metcorr_ey_es1_DOWN, covMET, 0, svFitMass_es1_DOWN, svFitPt_es1_DOWN, svFitEta_es1_DOWN, svFitPhi_es1_DOWN);
+            if (doJES) {
+                runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteUp, measuredMETy_JetAbsoluteUp, covMET, 0, svFitMass_JetAbsoluteUp, svFitPt_JetAbsoluteUp, svFitEta_JetAbsoluteUp, svFitPhi_JetAbsoluteUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteDown, measuredMETy_JetAbsoluteDown, covMET, 0, svFitMass_JetAbsoluteDown, svFitPt_JetAbsoluteDown, svFitEta_JetAbsoluteDown, svFitPhi_JetAbsoluteDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteyearUp, measuredMETy_JetAbsoluteyearUp, covMET, 0, svFitMass_JetAbsoluteyearUp, svFitPt_JetAbsoluteyearUp, svFitEta_JetAbsoluteyearUp, svFitPhi_JetAbsoluteyearUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetAbsoluteyearDown, measuredMETy_JetAbsoluteyearDown, covMET, 0, svFitMass_JetAbsoluteyearDown, svFitPt_JetAbsoluteyearDown, svFitEta_JetAbsoluteyearDown, svFitPhi_JetAbsoluteyearDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1Up, measuredMETy_JetBBEC1Up, covMET, 0, svFitMass_JetBBEC1Up, svFitPt_JetBBEC1Up, svFitEta_JetBBEC1Up, svFitPhi_JetBBEC1Up);
+                runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1Down, measuredMETy_JetBBEC1Down, covMET, 0, svFitMass_JetBBEC1Down, svFitPt_JetBBEC1Down, svFitEta_JetBBEC1Down, svFitPhi_JetBBEC1Down);
+                runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1yearUp, measuredMETy_JetBBEC1yearUp, covMET, 0, svFitMass_JetBBEC1yearUp, svFitPt_JetBBEC1yearUp, svFitEta_JetBBEC1yearUp, svFitPhi_JetBBEC1yearUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetBBEC1yearDown, measuredMETy_JetBBEC1yearDown, covMET, 0, svFitMass_JetBBEC1yearDown, svFitPt_JetBBEC1yearDown, svFitEta_JetBBEC1yearDown, svFitPhi_JetBBEC1yearDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetEC2Up, measuredMETy_JetEC2Up, covMET, 0, svFitMass_JetEC2Up, svFitPt_JetEC2Up, svFitEta_JetEC2Up, svFitPhi_JetEC2Up);
+                runSVFit(measuredTauLeptons, measuredMETx_JetEC2Down, measuredMETy_JetEC2Down, covMET, 0, svFitMass_JetEC2Down, svFitPt_JetEC2Down, svFitEta_JetEC2Down, svFitPhi_JetEC2Down);
+                runSVFit(measuredTauLeptons, measuredMETx_JetEC2yearUp, measuredMETy_JetEC2yearUp, covMET, 0, svFitMass_JetEC2yearUp, svFitPt_JetEC2yearUp, svFitEta_JetEC2yearUp, svFitPhi_JetEC2yearUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetEC2yearDown, measuredMETy_JetEC2yearDown, covMET, 0, svFitMass_JetEC2yearDown, svFitPt_JetEC2yearDown, svFitEta_JetEC2yearDown, svFitPhi_JetEC2yearDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetFlavorQCDUp, measuredMETy_JetFlavorQCDUp, covMET, 0, svFitMass_JetFlavorQCDUp, svFitPt_JetFlavorQCDUp, svFitEta_JetFlavorQCDUp, svFitPhi_JetFlavorQCDUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetFlavorQCDDown, measuredMETy_JetFlavorQCDDown, covMET, 0, svFitMass_JetFlavorQCDDown, svFitPt_JetFlavorQCDDown, svFitEta_JetFlavorQCDDown, svFitPhi_JetFlavorQCDDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetHFUp, measuredMETy_JetHFUp, covMET, 0, svFitMass_JetHFUp, svFitPt_JetHFUp, svFitEta_JetHFUp, svFitPhi_JetHFUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetHFDown, measuredMETy_JetHFDown, covMET, 0, svFitMass_JetHFDown, svFitPt_JetHFDown, svFitEta_JetHFDown, svFitPhi_JetHFDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetHFyearUp, measuredMETy_JetHFyearUp, covMET, 0, svFitMass_JetHFyearUp, svFitPt_JetHFyearUp, svFitEta_JetHFyearUp, svFitPhi_JetHFyearUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetHFyearDown, measuredMETy_JetHFyearDown, covMET, 0, svFitMass_JetHFyearDown, svFitPt_JetHFyearDown, svFitEta_JetHFyearDown, svFitPhi_JetHFyearDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetRelativeBalUp, measuredMETy_JetRelativeBalUp, covMET, 0, svFitMass_JetRelativeBalUp, svFitPt_JetRelativeBalUp, svFitEta_JetRelativeBalUp, svFitPhi_JetRelativeBalUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetRelativeBalDown, measuredMETy_JetRelativeBalDown, covMET, 0, svFitMass_JetRelativeBalDown, svFitPt_JetRelativeBalDown, svFitEta_JetRelativeBalDown, svFitPhi_JetRelativeBalDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JetRelativeSampleUp, measuredMETy_JetRelativeSampleUp, covMET, 0, svFitMass_JetRelativeSampleUp, svFitPt_JetRelativeSampleUp, svFitEta_JetRelativeSampleUp, svFitPhi_JetRelativeSampleUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JetRelativeSampleDown, measuredMETy_JetRelativeSampleDown, covMET, 0, svFitMass_JetRelativeSampleDown, svFitPt_JetRelativeSampleDown, svFitEta_JetRelativeSampleDown, svFitPhi_JetRelativeSampleDown);
+                runSVFit(measuredTauLeptons, measuredMETx_JERUp, measuredMETy_JERUp, covMET, 0, svFitMass_JERUp, svFitPt_JERUp, svFitEta_JERUp, svFitPhi_JERUp);
+                runSVFit(measuredTauLeptons, measuredMETx_JERDown, measuredMETy_JERDown, covMET, 0, svFitMass_JERDown, svFitPt_JERDown, svFitEta_JERDown, svFitPhi_JERDown);
+            }
+            else {
+               svFitMass_JetAbsoluteUp=svFitMass;
+               svFitMass_JetAbsoluteDown=svFitMass;
+               svFitMass_JetAbsoluteyearUp=svFitMass;
+               svFitMass_JetAbsoluteyearDown=svFitMass;
+               svFitMass_JetBBEC1Up=svFitMass;
+               svFitMass_JetBBEC1Down=svFitMass;
+               svFitMass_JetBBEC1yearUp=svFitMass;
+               svFitMass_JetBBEC1yearDown=svFitMass;
+               svFitMass_JetEC2Up=svFitMass;
+               svFitMass_JetEC2Down=svFitMass;
+               svFitMass_JetEC2yearUp=svFitMass;
+               svFitMass_JetEC2yearDown=svFitMass;
+               svFitMass_JetFlavorQCDUp=svFitMass;
+               svFitMass_JetFlavorQCDDown=svFitMass;
+               svFitMass_JetHFUp=svFitMass;
+               svFitMass_JetHFDown=svFitMass;
+               svFitMass_JetHFyearUp=svFitMass;
+               svFitMass_JetHFyearDown=svFitMass;
+               svFitMass_JetRelativeBalUp=svFitMass;
+               svFitMass_JetRelativeBalDown=svFitMass;
+               svFitMass_JetRelativeSampleUp=svFitMass;
+               svFitMass_JetRelativeSampleDown=svFitMass;
+               svFitMass_JERUp=svFitMass;
+               svFitMass_JERDown=svFitMass;
 
+               svFitPhi_JetAbsoluteUp=svFitPhi;
+               svFitPhi_JetAbsoluteDown=svFitPhi;
+               svFitPhi_JetAbsoluteyearUp=svFitPhi;
+               svFitPhi_JetAbsoluteyearDown=svFitPhi;
+               svFitPhi_JetBBEC1Up=svFitPhi;
+               svFitPhi_JetBBEC1Down=svFitPhi;
+               svFitPhi_JetBBEC1yearUp=svFitPhi;
+               svFitPhi_JetBBEC1yearDown=svFitPhi;
+               svFitPhi_JetEC2Up=svFitPhi;
+               svFitPhi_JetEC2Down=svFitPhi;
+               svFitPhi_JetEC2yearUp=svFitPhi;
+               svFitPhi_JetEC2yearDown=svFitPhi;
+               svFitPhi_JetFlavorQCDUp=svFitPhi;
+               svFitPhi_JetFlavorQCDDown=svFitPhi;
+               svFitPhi_JetHFUp=svFitPhi;
+               svFitPhi_JetHFDown=svFitPhi;
+               svFitPhi_JetHFyearUp=svFitPhi;
+               svFitPhi_JetHFyearDown=svFitPhi;
+               svFitPhi_JetRelativeBalUp=svFitPhi;
+               svFitPhi_JetRelativeBalDown=svFitPhi;
+               svFitPhi_JetRelativeSampleUp=svFitPhi;
+               svFitPhi_JetRelativeSampleDown=svFitPhi;
+               svFitPhi_JERUp=svFitPhi;
+               svFitPhi_JERDown=svFitPhi;
+
+               svFitEta_JetAbsoluteUp=svFitEta;
+               svFitEta_JetAbsoluteDown=svFitEta;
+               svFitEta_JetAbsoluteyearUp=svFitEta;
+               svFitEta_JetAbsoluteyearDown=svFitEta;
+               svFitEta_JetBBEC1Up=svFitEta;
+               svFitEta_JetBBEC1Down=svFitEta;
+               svFitEta_JetBBEC1yearUp=svFitEta;
+               svFitEta_JetBBEC1yearDown=svFitEta;
+               svFitEta_JetEC2Up=svFitEta;
+               svFitEta_JetEC2Down=svFitEta;
+               svFitEta_JetEC2yearUp=svFitEta;
+               svFitEta_JetEC2yearDown=svFitEta;
+               svFitEta_JetFlavorQCDUp=svFitEta;
+               svFitEta_JetFlavorQCDDown=svFitEta;
+               svFitEta_JetHFUp=svFitEta;
+               svFitEta_JetHFDown=svFitEta;
+               svFitEta_JetHFyearUp=svFitEta;
+               svFitEta_JetHFyearDown=svFitEta;
+               svFitEta_JetRelativeBalUp=svFitEta;
+               svFitEta_JetRelativeBalDown=svFitEta;
+               svFitEta_JetRelativeSampleUp=svFitEta;
+               svFitEta_JetRelativeSampleDown=svFitEta;
+               svFitEta_JERUp=svFitEta;
+               svFitEta_JERDown=svFitEta;
+
+               svFitPt_JetAbsoluteUp=svFitPt;
+               svFitPt_JetAbsoluteDown=svFitPt;
+               svFitPt_JetAbsoluteyearUp=svFitPt;
+               svFitPt_JetAbsoluteyearDown=svFitPt;
+               svFitPt_JetBBEC1Up=svFitPt;
+               svFitPt_JetBBEC1Down=svFitPt;
+               svFitPt_JetBBEC1yearUp=svFitPt;
+               svFitPt_JetBBEC1yearDown=svFitPt;
+               svFitPt_JetEC2Up=svFitPt;
+               svFitPt_JetEC2Down=svFitPt;
+               svFitPt_JetEC2yearUp=svFitPt;
+               svFitPt_JetEC2yearDown=svFitPt;
+               svFitPt_JetFlavorQCDUp=svFitPt;
+               svFitPt_JetFlavorQCDDown=svFitPt;
+               svFitPt_JetHFUp=svFitPt;
+               svFitPt_JetHFDown=svFitPt;
+               svFitPt_JetHFyearUp=svFitPt;
+               svFitPt_JetHFyearDown=svFitPt;
+               svFitPt_JetRelativeBalUp=svFitPt;
+               svFitPt_JetRelativeBalDown=svFitPt;
+               svFitPt_JetRelativeSampleUp=svFitPt;
+               svFitPt_JetRelativeSampleDown=svFitPt;
+               svFitPt_JERUp=svFitPt;
+               svFitPt_JERDown=svFitPt;
+            }
+
+	         // Recoil uncertainties
+            if (doRES) {
+               runSVFit(measuredTauLeptons, measuredMETx_ResolutionUp, measuredMETy_ResolutionUp, covMET, 0, svFitMass_ResolutionUp, svFitPt_ResolutionUp, svFitEta_ResolutionUp, svFitPhi_ResolutionUp);
+               runSVFit(measuredTauLeptons, measuredMETx_ResolutionDown, measuredMETy_ResolutionDown, covMET, 0, svFitMass_ResolutionDown, svFitPt_ResolutionDown, svFitEta_ResolutionDown, svFitPhi_ResolutionDown);
+               runSVFit(measuredTauLeptons, measuredMETx_ResponseUp, measuredMETy_ResponseUp, covMET, 0, svFitMass_ResponseUp, svFitPt_ResponseUp, svFitEta_ResponseUp, svFitPhi_ResponseUp);
+               runSVFit(measuredTauLeptons, measuredMETx_ResponseDown, measuredMETy_ResponseDown, covMET, 0, svFitMass_ResponseDown, svFitPt_ResponseDown, svFitEta_ResponseDown, svFitPhi_ResponseDown);
+            }
+            else {
+               svFitMass_ResponseUp=svFitMass;
+               svFitMass_ResponseDown=svFitMass;
+               svFitMass_ResolutionUp=svFitMass;
+               svFitMass_ResolutionDown=svFitMass;
+               svFitPt_ResponseUp=svFitPt;
+               svFitPt_ResponseDown=svFitPt;
+               svFitPt_ResolutionUp=svFitPt;
+               svFitPt_ResolutionDown=svFitPt;
+               svFitEta_ResponseUp=svFitEta;
+               svFitEta_ResponseDown=svFitEta;
+               svFitEta_ResolutionUp=svFitEta;
+               svFitEta_ResolutionDown=svFitEta;
+               svFitPhi_ResponseUp=svFitPhi;
+               svFitPhi_ResponseDown=svFitPhi;
+               svFitPhi_ResolutionUp=svFitPhi;
+               svFitPhi_ResolutionDown=svFitPhi;
+            }
 
             /* 
-             * Leg 2 
+             * Lepton energy scales
              */
-            double metcorr_ex_es2_UP = pfmet_es2Up * TMath::Cos(pfmetphi_es2Up);
-            double metcorr_ey_es2_UP = pfmet_es2Up * TMath::Sin(pfmetphi_es2Up);
+	         if (doES > 0) {
+               /* 
+                * Leg 1
+                */
 
-            double metcorr_ex_es2_DOWN = pfmet_es2Down * TMath::Cos(pfmetphi_es2Down);
-            double metcorr_ey_es2_DOWN = pfmet_es2Down * TMath::Sin(pfmetphi_es2Down);
+               double metcorr_ex_es1_UP = pfmet_es1Up * TMath::Cos(pfmetphi_es1Up);
+               double metcorr_ey_es1_UP = pfmet_es1Up * TMath::Sin(pfmetphi_es1Up);
 
-            std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es2_UP;
-            std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es2_DOWN;
+               double metcorr_ex_es1_DOWN = pfmet_es1Down * TMath::Cos(pfmetphi_es1Down);
+               double metcorr_ey_es1_DOWN = pfmet_es1Down * TMath::Sin(pfmetphi_es1Down);
 
-            if (channel == 0) {
-               // Use tau ES up/down for the tau leg, nominal muon for the first leg
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1,       eta_1, phi_1, 0.10566));
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2_es2Up, eta_2, phi_2, m_2_es2Up, decayMode_2));
+               std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es1_UP;
+               std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es1_DOWN;
 
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1,         eta_1, phi_1, 0.10566));
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2_es2Down, eta_2, phi_2, m_2_es2Down, decayMode_2));
+               // Depending on the channel, push_back different objects to the vectors to fit
+               if (channel == 0) {
+                  // Use muon ES up for the muon leg, nominal tau ES leg for tau
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1_es1Up, eta_1, phi_1, 0.10566));
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2,       eta_2, phi_2, m_2, decayMode_2));
+
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1_es1Down, eta_1, phi_1, 0.10566));
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2,         eta_2, phi_2, m_2, decayMode_2));
+               }
+               // ETAU: LEG 1 IS ELECTRON
+               else if (channel == 1) {
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Up, eta_1, phi_1, 0.51100e-3));
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2,       eta_2, phi_2, m_2, decayMode_2));
+
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Down, eta_1, phi_1, 0.51100e-3));
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2,         eta_2, phi_2, m_2, decayMode_2));
+               }
+               // EMU: LEG 1 IS ELECTRON, LEG 2 IS MUON
+               else if (channel == 2) {
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2,       eta_2, phi_2, 0.10566));
+                  measuredTauLeptons_es1_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Up, eta_1, phi_1, 0.51100e-3));
+
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2,         eta_2, phi_2, 0.10566));
+                  measuredTauLeptons_es1_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1_es1Down, eta_1, phi_1, 0.51100e-3));
+               }
+
+               // Call SVFit
+               runSVFit(measuredTauLeptons_es1_UP,   metcorr_ex_es1_UP,   metcorr_ey_es1_UP,   covMET, 0, svFitMass_es1_UP,   svFitPt_es1_UP,   svFitEta_es1_UP,   svFitPhi_es1_UP);
+               runSVFit(measuredTauLeptons_es1_DOWN, metcorr_ex_es1_DOWN, metcorr_ey_es1_DOWN, covMET, 0, svFitMass_es1_DOWN, svFitPt_es1_DOWN, svFitEta_es1_DOWN, svFitPhi_es1_DOWN);
+
+
+               /* 
+                * Leg 2 
+                */
+               double metcorr_ex_es2_UP = pfmet_es2Up * TMath::Cos(pfmetphi_es2Up);
+               double metcorr_ey_es2_UP = pfmet_es2Up * TMath::Sin(pfmetphi_es2Up);
+
+               double metcorr_ex_es2_DOWN = pfmet_es2Down * TMath::Cos(pfmetphi_es2Down);
+               double metcorr_ey_es2_DOWN = pfmet_es2Down * TMath::Sin(pfmetphi_es2Down);
+
+               std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es2_UP;
+               std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons_es2_DOWN;
+
+               if (channel == 0) {
+                  // Use tau ES up/down for the tau leg, nominal muon for the first leg
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1,       eta_1, phi_1, 0.10566));
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2_es2Up, eta_2, phi_2, m_2_es2Up, decayMode_2));
+
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,  pt_1,         eta_1, phi_1, 0.10566));
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay, pt_2_es2Down, eta_2, phi_2, m_2_es2Down, decayMode_2));
+               }
+               // ETAU: LEG 2 IS TAU
+               else if (channel == 1) {
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,       eta_1, phi_1, 0.51100e-3));
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2_es2Up, eta_2, phi_2, m_2_es2Up, decayMode_2));
+
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,         eta_1, phi_1, 0.51100e-3));
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2_es2Down, eta_2, phi_2, m_2_es2Down, decayMode_2));
+               }
+               // EMU: LEG 1 IS ELECTRON, LEG 2 IS MUON
+               else if (channel == 2) {
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2_es2Up, eta_2, phi_2, 0.10566));
+                  measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,       eta_1, phi_1, 0.51100e-3));
+
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2_es2Down, eta_2, phi_2, 0.10566));
+                  measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,         eta_1, phi_1, 0.51100e-3));
+               }
+
+               // Call SVFit
+               runSVFit(measuredTauLeptons_es2_UP,   metcorr_ex_es2_UP,   metcorr_ey_es2_UP,   covMET, 0, svFitMass_es2_UP,   svFitPt_es2_UP,   svFitEta_es2_UP,   svFitPhi_es2_UP);
+               runSVFit(measuredTauLeptons_es2_DOWN, metcorr_ex_es2_DOWN, metcorr_ey_es2_DOWN, covMET, 0, svFitMass_es2_DOWN, svFitPt_es2_DOWN, svFitEta_es2_DOWN, svFitPhi_es2_DOWN);
+
+	         }
+	         else {
+               std::cout << ">>> No lepton energy shifts: use central values" << std::endl;
+               svFitMass_es1_DOWN=svFitMass;
+               svFitMass_es1_UP=svFitMass;
+               svFitPhi_es1_DOWN=svFitPhi;
+               svFitPhi_es1_UP=svFitPhi;
+               svFitEta_es1_DOWN=svFitEta;
+               svFitEta_es1_UP=svFitEta;
+               svFitPt_es1_DOWN=svFitPt;
+               svFitPt_es1_UP=svFitPt;
+
+               svFitMass_es2_DOWN=svFitMass;
+               svFitMass_es2_UP=svFitMass;
+               svFitPhi_es2_DOWN=svFitPhi;
+               svFitPhi_es2_UP=svFitPhi;
+               svFitEta_es2_DOWN=svFitEta;
+               svFitEta_es2_UP=svFitEta;
+               svFitPt_es2_DOWN=svFitPt;
+               svFitPt_es2_UP=svFitPt;
             }
-            // ETAU: LEG 2 IS TAU
-            else if (channel == 1) {
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,       eta_1, phi_1, 0.51100e-3));
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2_es2Up, eta_2, phi_2, m_2_es2Up, decayMode_2));
+         
 
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,         eta_1, phi_1, 0.51100e-3));
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToHadDecay,  pt_2_es2Down, eta_2, phi_2, m_2_es2Down, decayMode_2));
-            }
-            // EMU: LEG 1 IS ELECTRON, LEG 2 IS MUON
-            else if (channel == 2) {
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2_es2Up, eta_2, phi_2, 0.10566));
-               measuredTauLeptons_es2_UP.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,       eta_1, phi_1, 0.51100e-3));
-
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay,   pt_2_es2Down, eta_2, phi_2, 0.10566));
-               measuredTauLeptons_es2_DOWN.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToElecDecay, pt_1,         eta_1, phi_1, 0.51100e-3));
-            }
-
-            // Call SVFit
-            runSVFit(measuredTauLeptons_es2_UP,   metcorr_ex_es2_UP,   metcorr_ey_es2_UP,   covMET, 0, svFitMass_es2_UP,   svFitPt_es2_UP,   svFitEta_es2_UP,   svFitPhi_es2_UP);
-            runSVFit(measuredTauLeptons_es2_DOWN, metcorr_ex_es2_DOWN, metcorr_ey_es2_DOWN, covMET, 0, svFitMass_es2_DOWN, svFitPt_es2_DOWN, svFitEta_es2_DOWN, svFitPhi_es2_DOWN);
-
-	      }
-	      else {
-            std::cout << ">>> No lepton energy shifts: use central values" << std::endl;
-            svFitMass_es1_DOWN=svFitMass;
-            svFitMass_es1_UP=svFitMass;
-            svFitPhi_es1_DOWN=svFitPhi;
-            svFitPhi_es1_UP=svFitPhi;
-            svFitEta_es1_DOWN=svFitEta;
-            svFitEta_es1_UP=svFitEta;
-            svFitPt_es1_DOWN=svFitPt;
-            svFitPt_es1_UP=svFitPt;
-
-            svFitMass_es2_DOWN=svFitMass;
-            svFitMass_es2_UP=svFitMass;
-            svFitPhi_es2_DOWN=svFitPhi;
-            svFitPhi_es2_UP=svFitPhi;
-            svFitEta_es2_DOWN=svFitEta;
-            svFitEta_es2_UP=svFitEta;
-            svFitPt_es2_DOWN=svFitPt;
-            svFitPt_es2_UP=svFitPt;
+            newBranch1->Fill();
+            newBranch1_es1_U->Fill();
+            newBranch1_es1_D->Fill();
+            newBranch1_es2_U->Fill();
+            newBranch1_es2_D->Fill();
+            newBranch1UU->Fill();
+            newBranch1UD->Fill();
+            newBranch1ResponseU->Fill();
+            newBranch1ResponseD->Fill();
+            newBranch1ResolutionU->Fill();
+            newBranch1ResolutionD->Fill();
+            newBranch1JetAbsoluteU->Fill();
+            newBranch1JetAbsoluteD->Fill();
+            newBranch1JetAbsoluteyearU->Fill();
+            newBranch1JetAbsoluteyearD->Fill();
+            newBranch1JetBBEC1U->Fill();
+            newBranch1JetBBEC1D->Fill();
+            newBranch1JetBBEC1yearU->Fill();
+            newBranch1JetBBEC1yearD->Fill();
+            newBranch1JetEC2U->Fill();
+            newBranch1JetEC2D->Fill();
+            newBranch1JetEC2yearU->Fill();
+            newBranch1JetEC2yearD->Fill();
+            newBranch1JetFlavorQCDU->Fill();
+            newBranch1JetFlavorQCDD->Fill();
+            newBranch1JetHFU->Fill();
+            newBranch1JetHFD->Fill();
+            newBranch1JetHFyearU->Fill();
+            newBranch1JetHFyearD->Fill();
+            newBranch1JetRelativeBalU->Fill();
+            newBranch1JetRelativeBalD->Fill();
+            newBranch1JetRelativeSampleU->Fill();
+            newBranch1JetRelativeSampleD->Fill();
+            newBranch1JERU->Fill();
+            newBranch1JERD->Fill();
+            newBranchPt1->Fill();
+            newBranchPt1_es1_U->Fill();
+            newBranchPt1_es1_D->Fill();
+            newBranchPt1_es2_U->Fill();
+            newBranchPt1_es2_D->Fill();
+            newBranchPt1UU->Fill();
+            newBranchPt1UD->Fill();
+            newBranchPt1ResponseU->Fill();
+            newBranchPt1ResponseD->Fill();
+            newBranchPt1ResolutionU->Fill();
+            newBranchPt1ResolutionD->Fill();
+            newBranchPt1JetAbsoluteU->Fill();
+            newBranchPt1JetAbsoluteD->Fill();
+            newBranchPt1JetAbsoluteyearU->Fill();
+            newBranchPt1JetAbsoluteyearD->Fill();
+            newBranchPt1JetBBEC1U->Fill();
+            newBranchPt1JetBBEC1D->Fill();
+            newBranchPt1JetBBEC1yearU->Fill();
+            newBranchPt1JetBBEC1yearD->Fill();
+            newBranchPt1JetEC2U->Fill();
+            newBranchPt1JetEC2D->Fill();
+            newBranchPt1JetEC2yearU->Fill();
+            newBranchPt1JetEC2yearD->Fill();
+            newBranchPt1JetFlavorQCDU->Fill();
+            newBranchPt1JetFlavorQCDD->Fill();
+            newBranchPt1JetHFU->Fill();
+            newBranchPt1JetHFD->Fill();
+            newBranchPt1JetHFyearU->Fill();
+            newBranchPt1JetHFyearD->Fill();
+            newBranchPt1JetRelativeBalU->Fill();
+            newBranchPt1JetRelativeBalD->Fill();
+            newBranchPt1JetRelativeSampleU->Fill();
+            newBranchPt1JetRelativeSampleD->Fill();
+            newBranchPt1JERU->Fill();
+            newBranchPt1JERD->Fill();
+            newBranchEta1->Fill();
+            newBranchEta1_es1_U->Fill();
+            newBranchEta1_es1_D->Fill();
+            newBranchEta1_es2_U->Fill();
+            newBranchEta1_es2_D->Fill();
+            newBranchEta1UU->Fill();
+            newBranchEta1UD->Fill();
+            newBranchEta1ResponseU->Fill();
+            newBranchEta1ResponseD->Fill();
+            newBranchEta1ResolutionU->Fill();
+            newBranchEta1ResolutionD->Fill();
+            newBranchEta1JetAbsoluteU->Fill();
+            newBranchEta1JetAbsoluteD->Fill();
+            newBranchEta1JetAbsoluteyearU->Fill();
+            newBranchEta1JetAbsoluteyearD->Fill();
+            newBranchEta1JetBBEC1U->Fill();
+            newBranchEta1JetBBEC1D->Fill();
+            newBranchEta1JetBBEC1yearU->Fill();
+            newBranchEta1JetBBEC1yearD->Fill();
+            newBranchEta1JetEC2U->Fill();
+            newBranchEta1JetEC2D->Fill();
+            newBranchEta1JetEC2yearU->Fill();
+            newBranchEta1JetEC2yearD->Fill();
+            newBranchEta1JetFlavorQCDU->Fill();
+            newBranchEta1JetFlavorQCDD->Fill();
+            newBranchEta1JetHFU->Fill();
+            newBranchEta1JetHFD->Fill();
+            newBranchEta1JetHFyearU->Fill();
+            newBranchEta1JetHFyearD->Fill();
+            newBranchEta1JetRelativeBalU->Fill();
+            newBranchEta1JetRelativeBalD->Fill();
+            newBranchEta1JetRelativeSampleU->Fill();
+            newBranchEta1JetRelativeSampleD->Fill();
+            newBranchEta1JERU->Fill();
+            newBranchEta1JERD->Fill();
+            newBranchPhi1->Fill();
+            newBranchPhi1_es1_U->Fill();
+            newBranchPhi1_es1_D->Fill();
+            newBranchPhi1_es2_U->Fill();
+            newBranchPhi1_es2_D->Fill();
+            newBranchPhi1UU->Fill();
+            newBranchPhi1UD->Fill();
+            newBranchPhi1ResponseU->Fill();
+            newBranchPhi1ResponseD->Fill();
+            newBranchPhi1ResolutionU->Fill();
+            newBranchPhi1ResolutionD->Fill();
+            newBranchPhi1JetAbsoluteU->Fill();
+            newBranchPhi1JetAbsoluteD->Fill();
+            newBranchPhi1JetAbsoluteyearU->Fill();
+            newBranchPhi1JetAbsoluteyearD->Fill();
+            newBranchPhi1JetBBEC1U->Fill();
+            newBranchPhi1JetBBEC1D->Fill();
+            newBranchPhi1JetBBEC1yearU->Fill();
+            newBranchPhi1JetBBEC1yearD->Fill();
+            newBranchPhi1JetEC2U->Fill();
+            newBranchPhi1JetEC2D->Fill();
+            newBranchPhi1JetEC2yearU->Fill();
+            newBranchPhi1JetEC2yearD->Fill();
+            newBranchPhi1JetFlavorQCDU->Fill();
+            newBranchPhi1JetFlavorQCDD->Fill();
+            newBranchPhi1JetHFU->Fill();
+            newBranchPhi1JetHFD->Fill();
+            newBranchPhi1JetHFyearU->Fill();
+            newBranchPhi1JetHFyearD->Fill();
+            newBranchPhi1JetRelativeBalU->Fill();
+            newBranchPhi1JetRelativeBalD->Fill();
+            newBranchPhi1JetRelativeSampleU->Fill();
+            newBranchPhi1JetRelativeSampleD->Fill();
+            newBranchPhi1JERU->Fill();
+            newBranchPhi1JERD->Fill();
          }
-         }
-
-         newBranch1->Fill();
-         newBranch1U->Fill();
-         newBranch1D->Fill();
-         newBranch1UU->Fill();
-         newBranch1UD->Fill();
-         newBranch1MU->Fill();
-         newBranch1MD->Fill();
-         newBranch1ResponseU->Fill();
-         newBranch1ResponseD->Fill();
-         newBranch1ResolutionU->Fill();
-         newBranch1ResolutionD->Fill();
-         newBranch1JetAbsoluteU->Fill();
-         newBranch1JetAbsoluteD->Fill();
-         newBranch1JetAbsoluteyearU->Fill();
-         newBranch1JetAbsoluteyearD->Fill();
-         newBranch1JetBBEC1U->Fill();
-         newBranch1JetBBEC1D->Fill();
-         newBranch1JetBBEC1yearU->Fill();
-         newBranch1JetBBEC1yearD->Fill();
-         newBranch1JetEC2U->Fill();
-         newBranch1JetEC2D->Fill();
-         newBranch1JetEC2yearU->Fill();
-         newBranch1JetEC2yearD->Fill();
-         newBranch1JetFlavorQCDU->Fill();
-         newBranch1JetFlavorQCDD->Fill();
-         newBranch1JetHFU->Fill();
-         newBranch1JetHFD->Fill();
-         newBranch1JetHFyearU->Fill();
-         newBranch1JetHFyearD->Fill();
-         newBranch1JetRelativeBalU->Fill();
-         newBranch1JetRelativeBalD->Fill();
-         newBranch1JetRelativeSampleU->Fill();
-         newBranch1JetRelativeSampleD->Fill();
-         newBranch1JERU->Fill();
-         newBranch1JERD->Fill();
-         newBranchPt1->Fill();
-         newBranchPt1U->Fill();
-         newBranchPt1D->Fill();
-         newBranchPt1UU->Fill();
-         newBranchPt1UD->Fill();
-         newBranchPt1MU->Fill();
-         newBranchPt1MD->Fill();
-         newBranchPt1ResponseU->Fill();
-         newBranchPt1ResponseD->Fill();
-         newBranchPt1ResolutionU->Fill();
-         newBranchPt1ResolutionD->Fill();
-         newBranchPt1JetAbsoluteU->Fill();
-         newBranchPt1JetAbsoluteD->Fill();
-         newBranchPt1JetAbsoluteyearU->Fill();
-         newBranchPt1JetAbsoluteyearD->Fill();
-         newBranchPt1JetBBEC1U->Fill();
-         newBranchPt1JetBBEC1D->Fill();
-         newBranchPt1JetBBEC1yearU->Fill();
-         newBranchPt1JetBBEC1yearD->Fill();
-         newBranchPt1JetEC2U->Fill();
-         newBranchPt1JetEC2D->Fill();
-         newBranchPt1JetEC2yearU->Fill();
-         newBranchPt1JetEC2yearD->Fill();
-         newBranchPt1JetFlavorQCDU->Fill();
-         newBranchPt1JetFlavorQCDD->Fill();
-         newBranchPt1JetHFU->Fill();
-         newBranchPt1JetHFD->Fill();
-         newBranchPt1JetHFyearU->Fill();
-         newBranchPt1JetHFyearD->Fill();
-         newBranchPt1JetRelativeBalU->Fill();
-         newBranchPt1JetRelativeBalD->Fill();
-         newBranchPt1JetRelativeSampleU->Fill();
-         newBranchPt1JetRelativeSampleD->Fill();
-         newBranchPt1JERU->Fill();
-         newBranchPt1JERD->Fill();
-         newBranchEta1->Fill();
-         newBranchEta1U->Fill();
-         newBranchEta1D->Fill();
-         newBranchEta1UU->Fill();
-         newBranchEta1UD->Fill();
-         newBranchEta1MU->Fill();
-         newBranchEta1MD->Fill();
-         newBranchEta1ResponseU->Fill();
-         newBranchEta1ResponseD->Fill();
-         newBranchEta1ResolutionU->Fill();
-         newBranchEta1ResolutionD->Fill();
-         newBranchEta1JetAbsoluteU->Fill();
-         newBranchEta1JetAbsoluteD->Fill();
-         newBranchEta1JetAbsoluteyearU->Fill();
-         newBranchEta1JetAbsoluteyearD->Fill();
-         newBranchEta1JetBBEC1U->Fill();
-         newBranchEta1JetBBEC1D->Fill();
-         newBranchEta1JetBBEC1yearU->Fill();
-         newBranchEta1JetBBEC1yearD->Fill();
-         newBranchEta1JetEC2U->Fill();
-         newBranchEta1JetEC2D->Fill();
-         newBranchEta1JetEC2yearU->Fill();
-         newBranchEta1JetEC2yearD->Fill();
-         newBranchEta1JetFlavorQCDU->Fill();
-         newBranchEta1JetFlavorQCDD->Fill();
-         newBranchEta1JetHFU->Fill();
-         newBranchEta1JetHFD->Fill();
-         newBranchEta1JetHFyearU->Fill();
-         newBranchEta1JetHFyearD->Fill();
-         newBranchEta1JetRelativeBalU->Fill();
-         newBranchEta1JetRelativeBalD->Fill();
-         newBranchEta1JetRelativeSampleU->Fill();
-         newBranchEta1JetRelativeSampleD->Fill();
-         newBranchEta1JERU->Fill();
-         newBranchEta1JERD->Fill();
-         newBranchPhi1->Fill();
-         newBranchPhi1U->Fill();
-         newBranchPhi1D->Fill();
-         newBranchPhi1UU->Fill();
-         newBranchPhi1UD->Fill();
-         newBranchPhi1MU->Fill();
-         newBranchPhi1MD->Fill();
-         newBranchPhi1ResponseU->Fill();
-         newBranchPhi1ResponseD->Fill();
-         newBranchPhi1ResolutionU->Fill();
-         newBranchPhi1ResolutionD->Fill();
-         newBranchPhi1JetAbsoluteU->Fill();
-         newBranchPhi1JetAbsoluteD->Fill();
-         newBranchPhi1JetAbsoluteyearU->Fill();
-         newBranchPhi1JetAbsoluteyearD->Fill();
-         newBranchPhi1JetBBEC1U->Fill();
-         newBranchPhi1JetBBEC1D->Fill();
-         newBranchPhi1JetBBEC1yearU->Fill();
-         newBranchPhi1JetBBEC1yearD->Fill();
-         newBranchPhi1JetEC2U->Fill();
-         newBranchPhi1JetEC2D->Fill();
-         newBranchPhi1JetEC2yearU->Fill();
-         newBranchPhi1JetEC2yearD->Fill();
-         newBranchPhi1JetFlavorQCDU->Fill();
-         newBranchPhi1JetFlavorQCDD->Fill();
-         newBranchPhi1JetHFU->Fill();
-         newBranchPhi1JetHFD->Fill();
-         newBranchPhi1JetHFyearU->Fill();
-         newBranchPhi1JetHFyearD->Fill();
-         newBranchPhi1JetRelativeBalU->Fill();
-         newBranchPhi1JetRelativeBalD->Fill();
-         newBranchPhi1JetRelativeSampleU->Fill();
-         newBranchPhi1JetRelativeSampleD->Fill();
-         newBranchPhi1JERU->Fill();
-         newBranchPhi1JERD->Fill();
-
+         dir->cd();
+         t->Write("",TObject::kOverwrite);
+         strcpy(TreeToUse,stringA);
       }
-
-      dir->cd();
-      t->Write("",TObject::kOverwrite);
-      strcpy(TreeToUse,stringA);
-
    }
 }
 
