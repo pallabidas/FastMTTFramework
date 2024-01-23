@@ -1,9 +1,17 @@
 # FastMTTFramework
 
-(Instructions modified from original)
+This repository is for running the `FastMTT` algorithm for estimating the full di-tau mass on samples with two visible taus. Depending on the decay modes of the taus, there are different settings to pass to the
+`FastMTT` function. 
 
-```
+If the input consists of one `TTree` with events in all three channels (`mutau`, `etau`, and `emu`) together, with a branch called `channel` that is equal to `0` for `mutau`, `1` for `etau`, and `2` for `emu`, use 
+the flag `--channel=all`, which will call the executable in `ROOT/bin/SVFit.cc`. 
 
+This single executable assumes that the input `TTree` already has the nominal lepton energy scales applied, and the lepton up/down shifts already in the input `TTree` as well.
+
+The older scheme, which has a different executable for each channel, computes the nominal and up/down lepton energy scales on top of the input branches.
+
+## Setup (do only once)
+```bash
 cmsrel CMSSW_9_4_4
 cd CMSSW_9_4_4/src
 cmsenv
@@ -14,35 +22,42 @@ cd $CMSSW_BASE/src
 scram b -j 4
 ```
 
-(Not necessary for me) Merge skimmed files to have 20k events per file: 
-
-```
-cd FastMTTFramework/tools
-mkdir /nfs_scratch/user/caillol/haabbtt_et2016_7sep_merged #edit name to match your area and samples
-# edit controlledMerge_bbtt.py to change the location of your skimmed files (originalDir and targetDir)
-python controlledMerge_bbtt.py --channel=mt --year=2018
-```
-
+## Each time we change the input files
 Copy the merged files to hdfs to be read by Condor:
 https://github.com/skkwan/ToolRoom/blob/master/fileManipulationAndFirstLooks/copyFilesFromCERNtoUW.md
 
 https://github.com/skkwan/ToolRoom/blob/master/fileManipulationAndFirstLooks/gfalCopyDirectoriesIntelligently.py
 
-```
-cp -r /nfs_scratch/skkwan/hToAA/mt2018/Apr-04-2022-18h26m-DataMC2018_JERsys_withTES_merged /hdfs/store/user/skkwan/hToAA/skims/mt2018/.
+## Each time we change the .cc files
+
+First make sure that `ROOT/bin/BuildFile.xml` includes the `.cc`.
+
+```bash
+# Recompile
+scram b -j 8
 ```
 
-Setup proxy:
+## To run the example to submit one file
 
-```
- voms-proxy-init --voms=cms --valid=48:00
-```
-
-Submit jobs to condor:
-
-```
-cd FastMTTFramework/test
-python prepare_submit.py --channel=mt --year=2018 #edit name of area in code
-sh do_submit_et2016.sh
+```bash
+voms-proxy-init --voms=cms --valid=194:00
+cmsenv
+cd test/
+bash example.sh
 ```
 
+## To submit over all 2018 samples
+
+```bash
+voms-proxy-init --voms=cms --valid=194:00
+cmsenv
+cd test/
+python prepare_submit.py --channel=all --year=2018  
+# The above step makes a .sh file which we can run
+bash do_submit_all2018.sh
+```
+
+## Comments on farmoutAnalysisJob behaviour
+
+- The Condor `.sub` file is called `submit` and is located in `/nfs_scratch/`, e.g. 
+`/nfs_scratch/skkwan/fastmtt_all2018/TTTo2L2Nu/submit/all_2018_TTTo2L2Nu-postprocessed_ntuple_TTTo2L2Nu_15/submit`
