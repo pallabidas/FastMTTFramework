@@ -116,6 +116,7 @@ def main(argv=None):
     farmoutString = 'farmoutAnalysisJobs --infer-cmssw-path --fwklite --input-file-list=%s' % (input_name)
     farmoutString += ' --submit-dir=%s --output-dag-file=%s --output-dir=%s' % (submit_dir, dag_dir, output_dir)
     farmoutString += ' --input-files-per-job=%i %s %s' % (filesperjob, jobName, bash_name)
+    farmoutString += ' --opsys=CentOS7'
                 
     if not args.dryrun:
         print('Submitting %s' % sample_name)
