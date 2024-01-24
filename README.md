@@ -54,6 +54,11 @@ cd test/
 bash example.sh
 ```
 
+## To prepare the input files 
+
+In the LUNA framework we run this step after `postprocessing`. Presumably the postprocessed n-tuples are living on lxplus EOS. Use [gfalCopyDirectoriesIntelligently.py](https://github.com/skkwan/ToolRoom/blob/main/fileManipulationAndFirstLooks/gfalCopyDirectoriesIntelligently.py) 
+to copy the postprocessed n-tuples to UW Tier 2 storage. This should only take 5-10 minutes.
+
 ## To submit over all 2018 samples
 
 ```bash
@@ -64,6 +69,20 @@ python prepare_submit.py --channel=all --year=2018
 # The above step makes a .sh file which we can run
 bash do_submit_all2018.sh
 ```
+
+## To continue with the LUNA workflow 
+
+```bash
+python checkJobCompletion.py --rootdir=[path to nfs_scratch directory]
+python haddFiles.py --dir=[path to hdfs directory]
+```
+
+Then copy the files to lxplus EOS. In an area WITHOUT CMSSW `cmsenv` on lxplus, run [gfalCopyUWT2ToCERN.py](https://github.com/skkwan/ToolRoom/blob/main/fileManipulationAndFirstLooks/gfalCopyUWT2ToCERN.py)
+```bash
+python gfalCopyUWT2ToCERN.py
+```
+
+And continue with DNN and histogramming in LUNA.
 
 ## Comments on farmoutAnalysisJob behaviour
 
