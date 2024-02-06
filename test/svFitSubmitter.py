@@ -70,7 +70,12 @@ def main(argv=None):
     output_dir = '/store/user/%s/%s/%s/'\
         % (pwd.getpwuid(os.getuid())[0], jobName, sample_name)
 
-    filelist = ['%s/%s' % (sampledir, x) for x in os.listdir(sampledir)]
+    # If the input is a directory
+    if (".root" in sampledir):
+        filelist = ['%s' % (sampledir)]
+    else:
+        filelist = ['%s/%s' % (sampledir, x) for x in os.listdir(sampledir)]
+    print(filelist)
     numfiles = len(filelist)
     totalsize = sum([os.path.getsize(f) for f in filelist])
     averagesize = totalsize/numfiles

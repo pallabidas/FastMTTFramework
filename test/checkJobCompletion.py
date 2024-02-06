@@ -12,6 +12,8 @@ import re
 import sys
 import shutil
 
+commandTemplate="python svFitSubmitter.py -sd FILEGOESHERE -es=0 -ues=0 -res=0 -jes=0  -year=2018  --channel='all' --jobName fastmtt_2024-02-06-10h24m_rescue"
+
 parser = argparse.ArgumentParser(
     description='Check a folder of Condor log files for failed jobs (jobs that do not have the "normal termination" string.'
 )
@@ -34,10 +36,14 @@ args = parser.parse_args()
 
 # The string in the .out ffile that indicates a succesful job
 outfile_proofstring = "dashboard_completion called with exit code 0"
+outfile_proofstring2 = "Found key=event_tree"
 outfile_alsoOK = "exiting as though successful"
 
-rescuefile = "rescue.csv"
-os.system("rm {}".format(rescuefile))
+badlogsfile = "badlogs.csv"
+os.system("rm {}".format(badlogsfile))
+
+rescueScript = "do_rescue_submit_all2018.sh"
+os.system("rm {}".format(rescueScript))
 
 # ---- End of setup --------------
 
@@ -53,10 +59,23 @@ for subdir, dirs, files in os.walk(args.rootdir):
         if ".out" not in filename:
             continue
         logpath = os.path.join(subdir, filename)
-        print("Checking {}".format(logpath))
+        # print("Checking {}".format(logpath))
         with open(logpath) as flog:
-            if not ((outfile_proofstring in flog.read()) or (outfile_alsoOK in flog.read())):
-                print(">>> proofstring {} not found in {}".format(outfile_proofstring, logpath))
-                with open("rescue.csv", "a") as rescuefile:
-                    rescuefile.write("{}\n".format(logpath))
+            content = flog.read()
+            hasStandardProofstrings = (outfile_proofstring in content) and (outfile_proofstring2 in content)
+            hasDuplicateFileProofstring = (outfile_alsoOK in content)
+            isLogValid = (hasStandardProofstrings or hasDuplicateFileProofstring)
+            if not isLogValid:
+                print(">>> proofstring {}, {}, or {} not found in {}".format(outfile_proofstring, outfile_proofstring2, outfile_alsoOK, logpath))
+                with open(badlogsfile, "a") as badlogs:
+                    badlogs.write("{}\n".format(logpath))
+            
+                # In this directory, get the .inputs file
+                inputpath = logpath.replace(".out", ".inputs")
+                with open(inputpath, "r") as fIn:
+                    inputContent = fIn.read()
+                    thisFilePath = inputContent.replace("root://cmsxrootd.hep.wisc.edu/", "/hdfs").replace("\n", "")
+                    with open(rescueScript, "a") as rescue:
+                        rescue.write(commandTemplate.replace("FILEGOESHERE", thisFilePath))
+                        rescue.write("\n")
 
