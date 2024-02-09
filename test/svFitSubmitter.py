@@ -50,7 +50,13 @@ def main(argv=None):
     period = args.year
     dryrun = args.dryrun
     sampledir = args.sampledir
-    sample_name = os.path.basename(sampledir)
+    # If the sampledir is a directory
+    if (".root" in sampledir):
+        sample_name = os.path.basename(os.path.dirname(sampledir))
+        # want: /hdfs/store/user/skkwan/hToA1A2/benchmark/
+        # have: /hdfs/store/user/skkwan/hToA1A2/benchmark/Embedded-Run2018D-EMu/postprocessed_ntuple_Embedded-Run2018D-EMu_0.root
+    else:
+        sample_name = os.path.basename(sampledir)
     print "sample_name:",sample_name
     if sample_name == '' :
         print "SAMPLE_NAME not defined, check for trailing '/' on sampledir path"
