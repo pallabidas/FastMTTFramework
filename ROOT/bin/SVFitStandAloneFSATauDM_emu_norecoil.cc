@@ -57,26 +57,39 @@ int main (int argc, char* argv[])
 
    TFile *fProduce;//= new TFile(parser.stringValue("newFile").c_str(),"UPDATE");
 
-   if(parser.doubleValue("newOutputFile")>0){
-   TFile *f = new TFile(parser.stringValue("inputFile").c_str(),"READ");
-     std::cout<<"Creating new outputfile"<<std::endl;
-     std::string newFileName = parser.stringValue("newFile");
+   TFile *f = TFile::Open(parser.stringValue("inputFile").c_str());
+   std::cout<<"Creating new outputfile"<<std::endl;
+   std::string newFileName = parser.stringValue("newFile");
 
-     fProduce = new TFile(newFileName.c_str(),"RECREATE");
-     copyFiles(parser, f, fProduce);//new TFile(parser.stringValue("inputFile").c_str()+"SVFit","UPDATE");
-     fProduce = new TFile(newFileName.c_str(),"UPDATE");
-     std::cout<<"listing the directories================="<<std::endl;
-     fProduce->ls();
-     readdir(fProduce,parser,TreeToUse,parser.doubleValue("doES"),parser.doubleValue("doUES"),parser.doubleValue("doRES"),parser.doubleValue("doJES"),parser.doubleValue("year"));
+   fProduce = new TFile(newFileName.c_str(),"RECREATE");
+   copyFiles(parser, f, fProduce);
+   fProduce = new TFile(newFileName.c_str(),"UPDATE");
+   std::cout<<"listing the directories================="<<std::endl;
+   fProduce->ls();
+   readdir(fProduce,parser,TreeToUse,parser.doubleValue("doES"),parser.doubleValue("doUES"),parser.doubleValue("doRES"),parser.doubleValue("doJES"),parser.doubleValue("year"));
+   fProduce->Close();
+   f->Close();
 
-     fProduce->Close();
-     f->Close();
-   }
-   else{
-     TFile *f = new TFile(parser.stringValue("inputFile").c_str(),"UPDATE");
-     readdir(f,parser,TreeToUse,parser.doubleValue("doES"),parser.doubleValue("doUES"),parser.doubleValue("doRES"),parser.doubleValue("doJES"),parser.doubleValue("year"));
-     f->Close();
-   }
+//   if(parser.doubleValue("newOutputFile")>0){
+//   TFile *f = new TFile(parser.stringValue("inputFile").c_str(),"READ");
+//     std::cout<<"Creating new outputfile"<<std::endl;
+//     std::string newFileName = parser.stringValue("newFile");
+//
+//     fProduce = new TFile(newFileName.c_str(),"RECREATE");
+//     copyFiles(parser, f, fProduce);//new TFile(parser.stringValue("inputFile").c_str()+"SVFit","UPDATE");
+//     fProduce = new TFile(newFileName.c_str(),"UPDATE");
+//     std::cout<<"listing the directories================="<<std::endl;
+//     fProduce->ls();
+//     readdir(fProduce,parser,TreeToUse,parser.doubleValue("doES"),parser.doubleValue("doUES"),parser.doubleValue("doRES"),parser.doubleValue("doJES"),parser.doubleValue("year"));
+//
+//     fProduce->Close();
+//     f->Close();
+//   }
+//   else{
+//     TFile *f = new TFile(parser.stringValue("inputFile").c_str(),"UPDATE");
+//     readdir(f,parser,TreeToUse,parser.doubleValue("doES"),parser.doubleValue("doUES"),parser.doubleValue("doRES"),parser.doubleValue("doJES"),parser.doubleValue("year"));
+//     f->Close();
+//   }
 
 
 } 
@@ -428,9 +441,7 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       int run, lumi;
       float pt1;
       float pt1_scaleU;
-      float pt1_sigmaU;
       float pt1_scaleD;
-      float pt1_sigmaD;
       float eta1;
       float phi1;
       float pt2;
@@ -613,9 +624,7 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       t->SetBranchAddress("lumi",&lumi);
       t->SetBranchAddress("pt_1",&pt1,&pt1branch);
       t->SetBranchAddress("pt_1_ScaleUp",&pt1_scaleU);
-      t->SetBranchAddress("pt_1_SigmaUp",&pt1_sigmaU);
       t->SetBranchAddress("pt_1_ScaleDown",&pt1_scaleD);
-      t->SetBranchAddress("pt_1_SigmaDown",&pt1_sigmaD);
       t->SetBranchAddress("eta_1",&eta1);
       t->SetBranchAddress("phi_1",&phi1);
       t->SetBranchAddress("pt_2",&pt2);
@@ -804,8 +813,8 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          covMET[0][1] =  pfCovMatrix01;
          covMET[1][1] =  pfCovMatrix11;
 
-         covMET[0][0] =  300;
-         covMET[1][1] =  300;
+         //covMET[0][0] =  300;
+         //covMET[1][1] =  300;
 
 	 std::vector<classic_svFit::MeasuredTauLepton> measuredTauLeptons;
 	 measuredTauLeptons.push_back(classic_svFit::MeasuredTauLepton(classic_svFit::MeasuredTauLepton::kTauToMuDecay, pt2, eta2,  phi2, 0.10566)); 
@@ -1309,7 +1318,7 @@ void runSVFit(std::vector<classic_svFit::MeasuredTauLepton> & measuredTauLeptons
   svFitPt = ttP4.Pt();
   svFitEta = ttP4.Eta();
   svFitPhi = ttP4.Phi();
-  std::cout << "found mass = " << svFitMass << std::endl;
+  //std::cout << "found mass = " << svFitMass << std::endl;
 
 }
 
