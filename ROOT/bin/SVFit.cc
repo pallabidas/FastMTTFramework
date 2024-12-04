@@ -104,6 +104,9 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
    char stringA[80]="first";
    dir->cd();      
    int k=0;
+   bool got_mutau_tree(false);
+   bool got_etau_tree(false);
+   bool got_emu_tree(false);
    while ((key = (TKey*)next())) { 
       printf("Found key=%s \n",key->GetName());
 
@@ -121,7 +124,11 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
       // Check all items in the tree: do not do k<1 criteria
       else if (obj->IsA()->InheritsFrom(TTree::Class())) {
          k++;
-         std::cout<<"ici!!!!"<<std::endl;
+	 sprintf(TreeToUse,"%s",obj->GetName());
+	 if (got_mutau_tree && std::string(key->GetName()).find("mutau") != std::string::npos) continue;
+	 if (got_etau_tree && std::string(key->GetName()).find("etau") != std::string::npos) continue;
+	 if (got_emu_tree && std::string(key->GetName()).find("emu") != std::string::npos) continue;
+	 std::cout<<"ici!!!!"<<std::endl;
 
 	 //int channel = 0;
 	 //std::cout << "Checking channels: " << std::endl;
@@ -1290,6 +1297,9 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          dir->cd();
          t->Write("",TObject::kOverwrite);
          strcpy(TreeToUse,stringA);
+         if (std::string(t->GetName()).find("mutau") != std::string::npos) got_mutau_tree = true;
+         if (std::string(t->GetName()).find("etau") != std::string::npos) got_etau_tree = true;
+         if (std::string(t->GetName()).find("emu") != std::string::npos) got_emu_tree = true;
       }
    }
 }
