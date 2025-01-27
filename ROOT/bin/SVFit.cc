@@ -313,10 +313,10 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          float svFitPhi_JetRelativeSampleDown = -10;
 
          TBranch *newBranch1 = t->Branch("m_sv", &svFitMass, "m_sv/F");
-         TBranch *newBranch1_es1_D = t->Branch("m_sv_es1_DOWN", &svFitMass_es1_DOWN, "m_sv_es1_DOWN/F");
-         TBranch *newBranch1_es1_U = t->Branch("m_sv_es1_UP",   &svFitMass_es1_UP,   "m_sv_es1_UP/F");
-         TBranch *newBranch1_es2_D = t->Branch("m_sv_es2_DOWN", &svFitMass_es2_DOWN, "m_sv_es2_DOWN/F");
-         TBranch *newBranch1_es2_U = t->Branch("m_sv_es2_UP",   &svFitMass_es2_UP,   "m_sv_es2_UP/F");
+         TBranch *newBranch1_es1_D = t->Branch("m_sv_es1Down", &svFitMass_es1_DOWN, "m_sv_es1Down/F");
+         TBranch *newBranch1_es1_U = t->Branch("m_sv_es1Up",   &svFitMass_es1_UP,   "m_sv_es1Up/F");
+         TBranch *newBranch1_es2_D = t->Branch("m_sv_es2Down", &svFitMass_es2_DOWN, "m_sv_es2Down/F");
+         TBranch *newBranch1_es2_U = t->Branch("m_sv_es2Up",   &svFitMass_es2_UP,   "m_sv_es2Up/F");
          TBranch *newBranch1UU = t->Branch("m_sv_UESUp", &svFitMass_UESUp, "m_sv_UESUp/F");
          TBranch *newBranch1UD = t->Branch("m_sv_UESDown", &svFitMass_UESDown, "m_sv_UESDown/F");
          TBranch *newBranch1ResponseU = t->Branch("m_sv_ResponseUp", &svFitMass_ResponseUp, "m_sv_ResponseUp/F");
@@ -349,10 +349,10 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranch1JERD = t->Branch("m_sv_JERDown", &svFitMass_JERDown, "m_sv_JERDown/F");
 
          TBranch *newBranchPt1 = t->Branch("pt_sv", &svFitPt, "pt_sv/F");
-         TBranch *newBranchPt1_es1_D = t->Branch("pt_sv_es1_DOWN", &svFitPt_es1_DOWN, "pt_sv_es1_DOWN/F");
-         TBranch *newBranchPt1_es1_U = t->Branch("pt_sv_es1_UP",   &svFitPt_es1_UP,   "pt_sv_es1_UP/F");
-         TBranch *newBranchPt1_es2_D = t->Branch("pt_sv_es2_DOWN", &svFitPt_es2_DOWN, "pt_sv_es2_DOWN/F");
-         TBranch *newBranchPt1_es2_U = t->Branch("pt_sv_es2_UP",   &svFitPt_es2_UP,   "pt_sv_es2_UP/F");
+         TBranch *newBranchPt1_es1_D = t->Branch("pt_sv_es1Down", &svFitPt_es1_DOWN, "pt_sv_es1Down/F");
+         TBranch *newBranchPt1_es1_U = t->Branch("pt_sv_es1Up",   &svFitPt_es1_UP,   "pt_sv_es1Up/F");
+         TBranch *newBranchPt1_es2_D = t->Branch("pt_sv_es2Down", &svFitPt_es2_DOWN, "pt_sv_es2Down/F");
+         TBranch *newBranchPt1_es2_U = t->Branch("pt_sv_es2Up",   &svFitPt_es2_UP,   "pt_sv_es2Up/F");
          TBranch *newBranchPt1UU = t->Branch("pt_sv_UESUp", &svFitPt_UESUp, "pt_sv_UESUp/F");
          TBranch *newBranchPt1UD = t->Branch("pt_sv_UESDown", &svFitPt_UESDown, "pt_sv_UESDown/F");
          TBranch *newBranchPt1ResponseU = t->Branch("pt_sv_ResponseUp", &svFitPt_ResponseUp, "pt_sv_ResponseUp/F");
@@ -385,10 +385,10 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranchPt1JERD = t->Branch("pt_sv_JERDown", &svFitPt_JERDown, "pt_sv_JERDown/F");
 
          TBranch *newBranchEta1 = t->Branch("eta_sv", &svFitEta, "eta_sv/F");
-         TBranch *newBranchEta1_es1_D = t->Branch("eta_sv_es1_DOWN", &svFitEta_es1_DOWN, "eta_sv_es1_DOWN/F");
-         TBranch *newBranchEta1_es1_U = t->Branch("eta_sv_es1_UP",   &svFitEta_es1_UP,   "eta_sv_es1_UP/F");
-         TBranch *newBranchEta1_es2_D = t->Branch("eta_sv_es2_DOWN", &svFitEta_es2_DOWN, "eta_sv_es2_DOWN/F");
-         TBranch *newBranchEta1_es2_U = t->Branch("eta_sv_es2_UP",   &svFitEta_es2_UP,   "eta_sv_es2_UP/F");
+         TBranch *newBranchEta1_es1_D = t->Branch("eta_sv_es1Down", &svFitEta_es1_DOWN, "eta_sv_es1Down/F");
+         TBranch *newBranchEta1_es1_U = t->Branch("eta_sv_es1Up",   &svFitEta_es1_UP,   "eta_sv_es1Up/F");
+         TBranch *newBranchEta1_es2_D = t->Branch("eta_sv_es2Down", &svFitEta_es2_DOWN, "eta_sv_es2Down/F");
+         TBranch *newBranchEta1_es2_U = t->Branch("eta_sv_es2Up",   &svFitEta_es2_UP,   "eta_sv_es2Up/F");
          TBranch *newBranchEta1UU = t->Branch("eta_sv_UESUp", &svFitEta_UESUp, "eta_sv_UESUp/F");
          TBranch *newBranchEta1UD = t->Branch("eta_sv_UESDown", &svFitEta_UESDown, "eta_sv_UESDown/F");
          TBranch *newBranchEta1ResponseU = t->Branch("eta_sv_ResponseUp", &svFitEta_ResponseUp, "eta_sv_ResponseUp/F");
@@ -421,10 +421,10 @@ void readdir(TDirectory *dir, optutl::CommandLineParser parser, char TreeToUse[]
          TBranch *newBranchEta1JERD = t->Branch("eta_sv_JERDown", &svFitEta_JERDown, "eta_sv_JERDown/F");
 
          TBranch *newBranchPhi1 = t->Branch("phi_sv", &svFitPhi, "phi_sv/F");
-         TBranch *newBranchPhi1_es1_D = t->Branch("phi_sv_es1_DOWN", &svFitPhi_es1_DOWN, "phi_sv_es1_DOWN/F");
-         TBranch *newBranchPhi1_es1_U = t->Branch("phi_sv_es1_UP",   &svFitPhi_es1_UP,   "phi_sv_es1_UP/F");
-         TBranch *newBranchPhi1_es2_D = t->Branch("phi_sv_es2_DOWN", &svFitPhi_es2_DOWN, "phi_sv_es2_DOWN/F");
-         TBranch *newBranchPhi1_es2_U = t->Branch("phi_sv_es2_UP",   &svFitPhi_es2_UP,   "phi_sv_es2_UP/F");
+         TBranch *newBranchPhi1_es1_D = t->Branch("phi_sv_es1Down", &svFitPhi_es1_DOWN, "phi_sv_es1Down/F");
+         TBranch *newBranchPhi1_es1_U = t->Branch("phi_sv_es1Up",   &svFitPhi_es1_UP,   "phi_sv_es1Up/F");
+         TBranch *newBranchPhi1_es2_D = t->Branch("phi_sv_es2Down", &svFitPhi_es2_DOWN, "phi_sv_es2Down/F");
+         TBranch *newBranchPhi1_es2_U = t->Branch("phi_sv_es2Up",   &svFitPhi_es2_UP,   "phi_sv_es2Up/F");
          TBranch *newBranchPhi1UU = t->Branch("phi_sv_UESUp", &svFitPhi_UESUp, "phi_sv_UESUp/F");
          TBranch *newBranchPhi1UD = t->Branch("phi_sv_UESDown", &svFitPhi_UESDown, "phi_sv_UESDown/F");
          TBranch *newBranchPhi1ResponseU = t->Branch("phi_sv_ResponseUp", &svFitPhi_ResponseUp, "phi_sv_ResponseUp/F");
