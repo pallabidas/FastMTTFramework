@@ -20,72 +20,23 @@ Features to be added:
 
 ## Setup (do only once)
 ```bash
-cmsrel CMSSW_9_4_4
-cd CMSSW_9_4_4/src
+cmsrel CMSSW_13_3_0
+cd CMSSW_13_3_0/src
 cmsenv
 git clone https://github.com/SVfit/ClassicSVfit TauAnalysis/ClassicSVfit -b fastMTT_21_06_2018
 git clone https://github.com/SVfit/SVfitTF TauAnalysis/SVfitTF
 git clone https://github.com/cecilecaillol/FastMTTFramework
 cd $CMSSW_BASE/src
-scram b -j 4
+scram b -j 12
 ```
 
-## Each time we change the input files
-Copy the merged files to hdfs to be read by Condor:
-https://github.com/skkwan/ToolRoom/blob/master/fileManipulationAndFirstLooks/copyFilesFromCERNtoUW.md
+## Submit condor jobs in lxplus
 
-https://github.com/skkwan/ToolRoom/blob/master/fileManipulationAndFirstLooks/gfalCopyDirectoriesIntelligently.py
-
-## Each time we change the .cc files
-
-First make sure that `ROOT/bin/BuildFile.xml` includes the `.cc`.
-
-```bash
-# Recompile
-scram b -j 8
-```
-
-## To run the example to submit one file
+Use the `FastMTTFramework/ROOT/bin/submit_jobs.sh` file with input argument being the dataset name, corresponding to `input_${1}.list` that has the input root files listed.
 
 ```bash
 voms-proxy-init --voms=cms --valid=194:00
 cmsenv
-cd test/
-bash example.sh
+cd FastMTTFramework/ROOT/bin/
+./submit_jobs.sh TTTo2L2Nu
 ```
-
-## To prepare the input files 
-
-In the LUNA framework we run this step after `postprocessing`. Presumably the postprocessed n-tuples are living on lxplus EOS. Use [gfalCopyDirectoriesIntelligently.py](https://github.com/skkwan/ToolRoom/blob/main/fileManipulationAndFirstLooks/gfalCopyDirectoriesIntelligently.py) 
-to copy the postprocessed n-tuples to UW Tier 2 storage. This should only take 5-10 minutes.
-
-## To submit over all 2018 samples
-
-```bash
-voms-proxy-init --voms=cms --valid=194:00
-cmsenv
-cd test/
-python prepare_submit.py --channel=all --year=2018  
-# The above step makes a .sh file which we can run
-bash do_submit_all2018.sh
-```
-
-## To continue with the LUNA workflow 
-
-```bash
-python checkJobCompletion.py --rootdir=[path to nfs_scratch directory]
-python haddFiles.py --dir=[path to hdfs directory]
-```
-
-Then copy the files to lxplus EOS. In an area WITHOUT CMSSW `cmsenv` on lxplus, run [gfalCopyUWT2ToCERN.py](https://github.com/skkwan/ToolRoom/blob/main/fileManipulationAndFirstLooks/gfalCopyUWT2ToCERN.py)
-```bash
-python gfalCopyUWT2ToCERN.py
-```
-
-And continue with DNN and histogramming in LUNA.
-
-## Comments on farmoutAnalysisJob behaviour
-
-- The Condor `.sub` file is called `submit` and is located in `/nfs_scratch/`, e.g. 
-`/nfs_scratch/skkwan/fastmtt_all2018/TTTo2L2Nu/submit/all_2018_TTTo2L2Nu-postprocessed_ntuple_TTTo2L2Nu_15/submit`
-
