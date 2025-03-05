@@ -1,4 +1,4 @@
-count="1"
+count="0"
 
 [ -d output ] || mkdir output
 [ -d error ] || mkdir error
