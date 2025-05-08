@@ -13,7 +13,7 @@ This combined executable assumes that the input `TTree` already has the nominal 
 
 The older scheme, which has a different executable for each channel, computes the nominal and up/down lepton energy scales on top of the input branches.
 
-In the [LUNA framework](https://gitlab.cern.ch/skkwan/lunaFramework), this step is meant to be run after `postprocessing`, and before the DNN evaluation.
+In the [LUNA framework](https://gitlab.cern.ch/skkwan/lunaFramework), this step is meant to be run after `skimming`, and before the `postprocessing`.
 
 Features to be added:
 - Benchmark runtimes with systematics enabled
@@ -25,18 +25,22 @@ cd CMSSW_13_3_0/src
 cmsenv
 git clone https://github.com/SVfit/ClassicSVfit TauAnalysis/ClassicSVfit -b fastMTT_21_06_2018
 git clone https://github.com/SVfit/SVfitTF TauAnalysis/SVfitTF
-git clone https://github.com/cecilecaillol/FastMTTFramework
+git clone https://github.com/pallabidas/FastMTTFramework -b sep2024
 cd $CMSSW_BASE/src
 scram b -j 12
 ```
+## Running locally
 
+```
+$CMSSW_BASE/bin/$SCRAM_ARCH/SVFit inputfile=/eos/cms/store/group/phys_susy/AN-24-166/pdas/condorSkim/2025-05-06-13h17m_year-2016preVFP/VBFHToTauTau/VBFHToTauTau_0.root newOutputFile=1.0 newFile=out_0.root
+```
 ## Submit condor jobs in lxplus
 
-Use the `FastMTTFramework/ROOT/bin/submit_jobs.sh` file with input argument being the dataset name, corresponding to `input_${1}.list` that has the input root files listed.
+Use the `FastMTTFramework/ROOT/bin/condor/runCondorEval.sh` file with input csv files specified within the script. User specific parameters also need to change such as absolute paths within jobTemplate.sub and runCondorEval.sh.
 
 ```bash
 voms-proxy-init --voms=cms --valid=194:00
 cmsenv
-cd FastMTTFramework/ROOT/bin/
-./submit_jobs.sh TTTo2L2Nu
+cd FastMTTFramework/ROOT/bin/condor
+./runCondorEval.sh
 ```
