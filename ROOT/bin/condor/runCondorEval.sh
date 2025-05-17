@@ -13,7 +13,7 @@ DESCRIPTION="2017"
 SUBMIT=true
 
 WORKING_DIR=${CMSSW_BASE}"/src/aabbttBDT/ROOT/bin"
-EOS_BASE_DIR="/eos/cms/store/group/phys_susy/AN-24-166/${USER}/HAA_svfit"
+EOS_BASE_DIR="/eos/cms/store/group/phys_susy/AN-24-166/pdas/HAA_svfit"
 
 #--------------------------------------------------------
 # Check if we used bash
